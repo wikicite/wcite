@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+const args = process.argv.slice(2)
+
+if (args.length && !args[0].match(/^[a-zA-Z0-9_]+$/)) {
+  require('../lib/command')(args)
+} else {
+  require('../lib/filter')(args)
+}

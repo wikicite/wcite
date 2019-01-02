@@ -1,0 +1,19 @@
+{
+  "name": "pandoc-wikicite",
+  "author": "Jakob Voß",
+  "version": "0.0.1",
+  "license": "MIT",
+  "bin": {
+    "pandoc-wikicite": "./bin/pandoc-wikicite"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
+  },
+  "dependencies": {
+    "citation-js": "^0.4.0-11"
+  }
+}
