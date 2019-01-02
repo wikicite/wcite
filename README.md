@@ -2,9 +2,13 @@
 
 > Pandoc filter to use Wikidata as reference manager
 
-This Pandoc filter extends use of [Pandoc’s citation syntax](https://pandoc.org/MANUAL.html#citations) and bibliography by adding Wikidata as source of references.
+[![Build Status](https://travis-ci.org/wikicite/pandoc-wikicite.svg?branch=master)](https://travis-ci.org/wikicite/pandoc-wikicite)
+
+This Pandoc filter extends use of [Pandoc’s citation syntax](https://pandoc.org/MANUAL.html#citations) and bibliography files by adding Wikidata as source of references.
 
 ## Installation
+
+Tested with [NodeJs](https://nodejs.org) version 6 and above.
 
 Install from source
 
