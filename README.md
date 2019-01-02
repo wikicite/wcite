@@ -1,10 +1,19 @@
 # pandoc-wikicite
 
+[![Build Status](https://travis-ci.com/wikicite/pandoc-wikicite.svg?branch=master)](https://travis-ci.com/wikicite/pandoc-wikicite)
+
 > Pandoc filter to use Wikidata as reference manager
 
-[![Build Status](https://travis-ci.org/wikicite/pandoc-wikicite.svg?branch=master)](https://travis-ci.org/wikicite/pandoc-wikicite)
+This Pandoc filter extends use of [Pandoc’s citation syntax](https://pandoc.org/MANUAL.html#citations) with [Wikidata] as source of bibliographic references. Bibliographic data is extracted from Wikidata with [citation.js] and cached locally in a CSL JSON file.
 
-This Pandoc filter extends use of [Pandoc’s citation syntax](https://pandoc.org/MANUAL.html#citations) and bibliography files by adding Wikidata as source of references.
+[Wikidata]: https://www.wikidata.org/
+[citation.js]: https://citation.js.org/
+
+## Background
+
+The knowledge base Wikidata contains statements about all kinds of entities such as people, places, and publications. The [WikiCite] initiative promotes the idea of using Wikidata as collaboratively curated bibliography. To cite a scholarly article, a book, or any other document from this bibliography it only needs methods to reference the corresponding Wikidata item and to extract its bibliographic data. 
+
+[WikiCite]: http://wikicite.org/
 
 ## Installation
 
@@ -18,7 +27,7 @@ Install from source
 
 ## Usage
 
-First create a `.json` file to store references from Wikidata, e.g. `wikicite-bibliography.json`. This file will be read and updated by the Pandoc filter but it must exist to property execute Pandoc in the first place, so initialize an empty JSON array: 
+First create a `.json` file to store references from Wikidata, e.g. `wikicite-bibliography.json`. This file will be read and updated by the Pandoc filter but it must exist to properly execute Pandoc in the first place, so initialize an empty JSON array: 
  
     echo '[]' > wikicite-bibliography.json
     pandoc-wikicite wikicite-bibliography.json update       # equivalent
@@ -49,5 +58,4 @@ You should create an alias to briefly call the script with hardcoded bibliograph
  
 ## See also
 
-* [citation.js](https://citation.js.org/)
-* [pandoc-filter-node](https://github.com/mvhenderson/pandoc-filter-node)
+* [pandoc-filter-node](https://github.com/mvhenderson/pandoc-filter-node) is another Node module to write Pandoc filters in JavaScript.
