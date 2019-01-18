@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.com/wikicite/pandoc-wikicite.svg?branch=master)](https://travis-ci.com/wikicite/pandoc-wikicite)
 [![NPM Version](http://img.shields.io/npm/v/pandoc-wikicite.svg?style=flat)](https://www.npmjs.org/package/pandoc-wikicite)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 This [Pandoc filter] supports using Pandoc’s [citation syntax] to reference bibliographic records from [Wikidata]. Bibliographic data is extracted from Wikidata with [citation.js] and stored locally in a CSL JSON file.
 
