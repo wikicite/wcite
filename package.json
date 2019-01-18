@@ -10,7 +10,8 @@
     "url": "https://github.com/wikicite/pandoc-wikicite.git"
   },
   "bin": {
-    "pandoc-wikicite": "./bin/pandoc-wikicite"
+    "pwcite": "./bin/pwcite",
+    "wcite": "./bin/wcite"
   },
   "main": "lib/index.js",
   "scripts": {

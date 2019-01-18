@@ -8,7 +8,7 @@
 
 This [Pandoc filter] supports using [Pandoc citation syntax] to reference
 bibliographic records from [Wikidata]. Bibliographic data is extracted from
-Wikidata with [citation.js] and stored locally in a CSL JSON file.
+Wikidata with [citation.js] and it can be stored locally in a CSL JSON file.
 
 [Pandoc filter]: https://pandoc.org/filters.html
 [Pandoc citation syntax]: https://pandoc.org/MANUAL.html#citations
@@ -21,6 +21,8 @@ Wikidata with [citation.js] and stored locally in a CSL JSON file.
 * [Background](#background)
 * [Install](#install)
 * [Usage](#usage)
+** [pwcite](#pwcite)
+** [wcite](#wcite)
 * [License](#license)
 
 ## Background
@@ -43,11 +45,18 @@ Install from source
 
     $ git clone https://github.com/wikicite/pandoc-wikicite.git
     $ cd pandoc-wikicite
-    $ npm install -g .
+    $ npm install -g .  # or `npm link`
 
 Tested with [NodeJs](https://nodejs.org) version 6 and above.
 
 ## Usage
+
+pandoc-wikicite consists of two scripts that can be used independently:
+
+* [`pwcite`](#pwcite) to use Wikidata identifiers in Pandoc citation keys
+* [`wcite`](#wcite) to manage locally stored bibliographic data from Wikidata
+
+### pwdcite
 
 Write your documents in Markdown with [Pandoc citation syntax]. In short,
 reference publications via citation keys prepended by `@`:
@@ -68,40 +77,30 @@ citekeys in the `citekeys` field of your [document metadata]:
 
     Wikidata is a collaborative knowledge base [@Vrand04].
 
-To process this file, call pandoc via:
+To process this file, call pandoc with two filters (`-F`):
 
-    $ pandoc --filter pandoc-wikicite --filter pandoc-citeproc test/example.md
+    $ pandoc -F pwcite -F pandoc-citeproc examples/example-1.md
+
 
 You can also reference the bibliography file via command line like this:
 
-    $ pandoc    Wikipedia --filter pandoc-wikicite --bibliography wikicite.json test/example.md
+    $ pandoc -F pwcite --bibliography wikicite.json examples/example-1.md
 
 In this case the metadata field `bibliography` in the source file is ignored but the bibliography file must exist to properly execute pandoc.
 
 Pandoc allows multiple bibliography files so you could have one file for references from Wikidata and one for additional references. 
 
-The filter script `pandoc-wikicite` detects a JSON bibliograpyhy file, looks up referenced Wikidata items in this file, and adds missing entries by lookup in Wikidata. Wikidata items can be referenced in two ways:
+The filter script `pwcite` detects a JSON bibliograpyhy file, looks up referenced
+Wikidata items in this file, and adds missing entries by lookup in Wikidata.
 
-- citation keys with Wikidata item identifiers (e.g. `@Q52`)
-- citation keys mapped to Wikidata item identifiers with metadata map `citekeys`
+### wcite
 
-More examples:
+The `wdcite` script can be used to list or add/update references in a JSON file:
 
-    pandoc --filter pandoc-wikicite --bibliography wikicite.json test/input.md
-
-The filter script can also be used to list or add/update references (*this is experimental*):
-
-    pandoc-wikicite wikicite.json              # list Wikidata citekeys
-    pandoc-wikicite wikicite.json update Q52   # update/add selected
-    pandoc-wikicite wikicite.json update       # update all
+    wcite wikicite.json              # list Wikidata citekeys
+    wcite wikicite.json update Q52   # update/add selected
+    wcite wikicite.json update       # update all
  
-You should create an alias to briefly call the script with hardcoded bibliography file:
-
-    alias wdcite='pandoc-wikicite wikicite.json'
-    wdcite              # list Wikidata citekeys
-    wdcite update Q52   # update/add selected
-    wdcite update       # update all
-
 ## License
 
 MIT license
