@@ -12,11 +12,13 @@
   "bin": {
     "pandoc-wikicite": "./bin/pandoc-wikicite"
   },
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha",
     "lint": "standard",
     "fix": "standard --fix",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "examples": "for md in examples/*.md; do pandoc -t json -o examples/$(basename $md .md).json $md; done"
   },
   "pre-commit": "lint-staged",
   "lint-staged": {

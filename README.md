@@ -6,12 +6,15 @@
 [![NPM Version](http://img.shields.io/npm/v/pandoc-wikicite.svg?style=flat)](https://www.npmjs.org/package/pandoc-wikicite)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-This [Pandoc filter] supports using Pandoc’s [citation syntax] to reference bibliographic records from [Wikidata]. Bibliographic data is extracted from Wikidata with [citation.js] and stored locally in a CSL JSON file.
+This [Pandoc filter] supports using [Pandoc citation syntax] to reference
+bibliographic records from [Wikidata]. Bibliographic data is extracted from
+Wikidata with [citation.js] and stored locally in a CSL JSON file.
 
 [Pandoc filter]: https://pandoc.org/filters.html
-[citation syntax]: https://pandoc.org/MANUAL.html#citations 
+[Pandoc citation syntax]: https://pandoc.org/MANUAL.html#citations
 [Wikidata]: https://www.wikidata.org/
 [citation.js]: https://citation.js.org/
+[document metadata]: https://pandoc.org/MANUAL.html#extension-yaml_metadata_block
 
 ## Table of Contents
 
@@ -22,7 +25,11 @@ This [Pandoc filter] supports using Pandoc’s [citation syntax] to reference bi
 
 ## Background
 
-The knowledge base Wikidata contains statements about all kinds of entities such as people, places, and publications. The [WikiCite] initiative promotes using Wikidata as collaboratively curated bibliography. To cite a document it only needs methods to reference a corresponding Wikidata item and to extract its bibliographic data.
+The knowledge base Wikidata contains statements about all kinds of entities
+such as people, places, and publications. The [WikiCite] initiative promotes
+using Wikidata as collaboratively curated bibliography. To cite a document it
+only needs methods to reference a corresponding Wikidata item and to extract
+its bibliographic data.
 
 [WikiCite]: http://wikicite.org/
 
@@ -42,25 +49,32 @@ Tested with [NodeJs](https://nodejs.org) version 6 and above.
 
 ## Usage
 
-*This is an early release, usage may slightly change to best facilitate most common workflows!*
+Write your documents in Markdown with [Pandoc citation syntax]. In short,
+reference publications via citation keys prepended by `@`:
 
-The following Pandoc Markdown document (`test/example.md`) illustrates the use of pandoc-wikicite:
+    Blah blah [@doe95; @doe99], disputed by @alice07.
+
+Publications listed in Wikidata can be referenced by their item identifier:
+
+    Wikidata is a collaborative knowledge base [@Q18507561].
+
+As these identifiers are ugly to read you can map them from more readable
+citekeys in the `citekeys` field of your [document metadata]:
 
     ---
-    bibliography: wikicite.json
     citekeys:
-      wikidata: Q2013
+      Vrand04: Q18507561
     ...
 
-    Wikipedia [@Q52] is older than Wikidata [@wikidata].
+    Wikidata is a collaborative knowledge base [@Vrand04].
 
-It references two bibliographic items: one directly by its Wikidata identifier `Q52` and the other by citation key `wikidata` mapped to the Wikidata identifier `Q2013`. To process this file, call pandoc via:
+To process this file, call pandoc via:
 
     $ pandoc --filter pandoc-wikicite --filter pandoc-citeproc test/example.md
 
 You can also reference the bibliography file via command line like this:
 
-    $ pandoc --filter pandoc-wikicite --bibliography wikicite.json test/example.md
+    $ pandoc    Wikipedia --filter pandoc-wikicite --bibliography wikicite.json test/example.md
 
 In this case the metadata field `bibliography` in the source file is ignored but the bibliography file must exist to properly execute pandoc.
 
