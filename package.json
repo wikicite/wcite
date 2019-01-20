@@ -19,7 +19,8 @@
     "lint": "standard",
     "fix": "standard --fix",
     "lint-staged": "lint-staged",
-    "examples": "for md in examples/*.md; do pandoc -t json -o examples/$(basename $md .md).json $md; done"
+    "examples": "for md in examples/*.md; do pandoc -t json -o examples/$(basename $md .md).json $md; done",
+    "demo": "pandoc -s -F ./bin/pwcite -F pandoc-citeproc examples/demo.md -o examples/demo.html"
   },
   "pre-commit": "lint-staged",
   "lint-staged": {

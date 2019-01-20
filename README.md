@@ -24,6 +24,7 @@ Wikidata with [citation.js] and it can be stored locally in a CSL JSON file.
     * [pwcite](#pwcite)
     * [Bibliography files](#bibliography-files)
     * [wcite](#wcite)
+    * [Linking back to Wikidata](#link-back-to-wikidata)
 * [License](#license)
 
 ## Background
@@ -141,6 +142,13 @@ Wikidata in a JSON file:
 The file is always sorted by citekey and serialized as pretty-printed, sorted
 JSON so facilitate comparing versions.
  
+### Linking back to Wikidata
+
+The bibliography generated in HTML format includes Wikidata identifiers for
+each reference. Setting document metadata field `wikidata-links` to `true` or
+to an URL prefix (e.g. `https://tools.wmflabs.org/scholia/work/`) will add two
+snippets of HTML and CSS to add links from references back to Wikidata.
+
 ## License
 
 MIT license
