@@ -1,6 +1,6 @@
 {
   "name": "pandoc-wikicite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Pandoc filter to use Wikidata as reference manager",
   "homepage": "https://github.com/wikicite/pandoc-wikicite#readme",
   "author": "Jakob Voß",
