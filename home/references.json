@@ -1,0 +1,103 @@
+[
+    {
+        "DOI": "10.1145/2629489",
+        "URL": "http://cacm.acm.org/magazines/2014/10/178785-wikidata/fulltext",
+        "author": [
+            {
+                "_ordinal": 1,
+                "family": "Vrandečić",
+                "given": "Denny"
+            },
+            {
+                "_ordinal": 2,
+                "family": "Krötzsch",
+                "given": "Markus"
+            }
+        ],
+        "container-title": "Communications of the ACM",
+        "id": "Q18507561",
+        "issue": "10",
+        "issued": {
+            "date-parts": [
+                [
+                    2014,
+                    1,
+                    1
+                ]
+            ]
+        },
+        "number-of-pages": "8",
+        "page": "78-85",
+        "title": "Wikidata: a free collaborative knowledgebase",
+        "type": "article-journal",
+        "volume": "57"
+    },
+    {
+        "id": "Q2049294",
+        "title": "Pandoc",
+        "type": "book",
+        "version": "2.5"
+    },
+    {
+        "DOI": "10.18452/9090",
+        "URL": "http://libreas.eu/ausgabe29/02voss/",
+        "author": [
+            {
+                "_ordinal": -1,
+                "family": "Voss",
+                "given": "Jakob"
+            }
+        ],
+        "container-title": "LIBREAS",
+        "id": "Q27044176",
+        "issued": {
+            "date-parts": [
+                [
+                    2016,
+                    7,
+                    18
+                ]
+            ]
+        },
+        "title": "Wikidata als Universalbibliographie: ein Kommentar",
+        "type": "book"
+    },
+    {
+        "URL": "https://www.scidatacon.org/IDW2018/sessions/264/poster/168/",
+        "author": [
+            {
+                "_ordinal": 1,
+                "family": "Mietchen",
+                "given": "Daniel"
+            },
+            {
+                "_ordinal": 2,
+                "family": "Nielsen",
+                "given": "Finn Årup"
+            },
+            {
+                "_ordinal": 3,
+                "family": "Willighagen",
+                "given": "Egon"
+            }
+        ],
+        "id": "Q58484849",
+        "issued": {
+            "date-parts": [
+                [
+                    2018,
+                    1,
+                    1
+                ]
+            ]
+        },
+        "title": "WikiCite and Scholia - a Linked Open Data approach to exploring the scholarly literature and related resources",
+        "type": "book"
+    },
+    {
+        "id": "Q824708",
+        "title": "Citation Style Language",
+        "type": "book",
+        "version": "1.0.1"
+    }
+]

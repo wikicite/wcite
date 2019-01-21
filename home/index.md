@@ -50,6 +50,8 @@ Further information about pandoc-wikicate can be found here:
 [Pandoc]: http://pandoc.org/
 [pandoc-wikicite]: https://github.com/wikicite/pandoc-wikicite
 [Scholia]: https://tools.wmflabs.org/scholia/
-[pandoc-wikicite]: https://www.npmjs.com/package/pandoc-wikicite
 
 ## References
+
+*See [`references.json`](references.json) for bibliography in CSL JSON format.*
+

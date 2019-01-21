@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+/**
+ * Enable wikicite.org homepage layout.
+ */
+const asset = require('../lib/util/asset')
+const { filter, MetaBlocks, RawBlock, metadata } = require('../lib/util/pandoc')
+    
+filter((root, format, meta) => {
+  if (format.match(/^html/)) {
+    meta['include-before'] = MetaBlocks([
+      RawBlock('html', asset('wikicite-header.html'))
+    ])
+    meta['include-after'] = MetaBlocks([
+      RawBlock('html', asset('wikicite-footer.html'))
+    ])
+	meta['css'] = metadata(['/assets/main.css', '/assets/wikicite.css'])
+  }
+  return root
+}, process.argv.slice(2))
