@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../lib/wcite')(process.argv.slice(2))
+require('../lib/wcite').run(process.argv.slice(2))

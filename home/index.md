@@ -38,7 +38,7 @@ bibliographic data can be cached locally in CSL JSON format and formatted in
 different citation styles based on [Citation Style Language] @Q824708.
 
 This document is an example of a document converted with pandoc-wikicite
-(see [Markdown source code](https://raw.githubusercontent.com/wikicite/pandoc-wikicite/master/examples/demo.md)).
+(see [Markdown source code](https://raw.githubusercontent.com/wikicite/pandoc-wikicite/master/home/index.md)).
  
 Further information about pandoc-wikicate can be found here:
 

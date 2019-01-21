@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 const should = require('should')
 const fs = require('fs')
-const { extractCitekeys } = require('../lib/index')
+const { extractCitekeys } = require('../lib/pwcite')
 
 describe('extract citekeys', () => {
   let examples = {

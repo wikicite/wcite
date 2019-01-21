@@ -20,7 +20,7 @@
     "fix": "standard --fix",
     "lint-staged": "lint-staged",
     "examples": "for md in examples/*.md; do pandoc -t json -o examples/$(basename $md .md).json $md; done",
-    "home": "mkdir -p demo; pandoc -s -F ./bin/pwcite -F pandoc-citeproc examples/demo.md -o home/index.html",
+    "home": "pandoc -s -F ./bin/pwcite -F pandoc-citeproc home/index.md -o home/index.html",
     "push-home": "git subtree push --prefix home origin gh-pages"
   },
   "pre-commit": "lint-staged",
