@@ -1,5 +1,5 @@
 ---
-title: Wikidata as reference manager with pandoc-wikicite
+title: pandoc-wikicite for reference managing with Wikidata
 author: Jakob Voß
 
 wikidata-links: true
@@ -53,5 +53,7 @@ Further information about pandoc-wikicate can be found here:
 
 ## References
 
-*See [`references.json`](references.json) for bibliography in CSL JSON format.*
+This bibliography has automatically been created with pandoc-citeproc and
+pandoc-wikicite. See [`references.json`](references.json) for the generated
+bibliography in CSL JSON format.
 
