@@ -1,6 +1,6 @@
 {
   "name": "pandoc-wikicite",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Pandoc filter to use Wikidata as reference manager",
   "homepage": "https://github.com/wikicite/pandoc-wikicite#readme",
   "author": "Jakob Voß",
@@ -27,7 +27,7 @@
     "fix": "standard --fix",
     "lint-staged": "lint-staged",
     "examples": "for md in examples/*.md; do pandoc -t json -o examples/$(basename $md .md).json $md; done",
-    "home": "pandoc -s -F ./bin/pwcite -F ./bin/wikicite.org --bibliography=home/references.json home/index.md -o home/index.html",
+    "home": "pandoc -s -F ./bin/pwcite -F ./bin/wikicite-org --bibliography=home/references.json home/index.md -o home/index.html",
     "push-home": "git subtree split --prefix home -b gh-pages && git push -f origin gh-pages:gh-pages"
   },
   "pre-commit": "lint-staged",

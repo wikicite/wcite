@@ -3,16 +3,12 @@
  * Enable wikicite.org homepage layout.
  */
 const asset = require('../lib/util/asset')
-const { filter, MetaBlocks, RawBlock, metadata } = require('../lib/util/pandoc')
+const { filter, addMetaBlocks, RawBlock, metadata } = require('../lib/util/pandoc')
     
 filter((root, format, meta) => {
   if (format.match(/^html/)) {
-    meta['include-before'] = MetaBlocks([
-      RawBlock('html', asset('wikicite-header.html'))
-    ])
-    meta['include-after'] = MetaBlocks([
-      RawBlock('html', asset('wikicite-footer.html'))
-    ])
+    addMetaBlocks(meta, 'include-before', [RawBlock('html', asset('wikicite-org-head.html'))])
+    addMetaBlocks(meta, 'include-after', [RawBlock('html', asset('wikicite-org-foot.html'))])
 	meta['css'] = metadata(['/assets/main.css', '/assets/wikicite.css'])
   }
   return root

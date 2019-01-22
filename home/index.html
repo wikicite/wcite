@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Jakob Voß" />
-  <title>Wikidata as reference manager with pandoc-wikicite</title>
+  <title>pandoc-wikicite for reference managing with Wikidata</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -49,7 +49,7 @@
 <main class="page-content" aria-label="Content">
   <div class="wrapper">
 <header>
-<h1 class="title">Wikidata as reference manager with pandoc-wikicite</h1>
+<h1 class="title">pandoc-wikicite for reference managing with Wikidata</h1>
 <p class="author">Jakob Voß</p>
 </header>
 <h2 id="wikidata-and-wikicite">Wikidata and WikiCite</h2>
@@ -65,7 +65,7 @@
 <li><a href="https://github.com/wikicite/pandoc-wikicite#readme" class="uri">https://github.com/wikicite/pandoc-wikicite#readme</a></li>
 </ul>
 <h2 id="references">References</h2>
-<p><em>See <a href="references.json"><code>references.json</code></a> for bibliography in CSL JSON format.</em></p>
+<p>This bibliography has automatically been created with pandoc-citeproc and pandoc-wikicite. See <a href="references.json"><code>references.json</code></a> for the generated bibliography in CSL JSON format.</p>
 <div id="refs" class="references">
 <div id="ref-Q824708">
 <p><em>Citation Style Language</em> (version 1.0.1). n.d.</p>
@@ -89,6 +89,26 @@
 <li id="fn1"><p>See <a href="http://wikicite.org/" class="uri">http://wikicite.org/</a> for additional links.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+<script>(refs => {
+  const base = 'http://www.wikidata.org/entity/'
+  Array.from(refs).filter(e => (e.id || '').match(/^ref-(Q[0-9]+)$/))
+    .forEach(div => {
+      var qid = div.id.substr(4)
+      var a = document.createElement('a')
+      a.className = 'wikidata-link'
+      a.href = base + qid
+      var p = div.firstElementChild
+      p.insertBefore(a, p.firstChild)
+    })
+})(document.getElementById('refs').childNodes || [])
+</script>
+<style type="text/css">a.wikidata-link {
+  background: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMiIgd2lkdGg9IjEwNTAiIGhlaWdodD0iNTkwIj4NCiAgPHBhdGggZD0ibSAxMjAsNTQ1IGggMzAgViA0NSBIIDEyMCBWIDU0NSB6IG0gNjAsMCBoIDkwIFYgNDUgSCAxODAgViA1NDUgeiBNIDMwMCw0NSBWIDU0NSBoIDkwIFYgNDUgaCAtOTAgeiIgc3R5bGU9ImZpbGw6Izk5MDAwMCIgLz4NCiAgPHBhdGggZD0ibSA4NDAsNTQ1IGggMzAgViA0NSBIIDg0MCBWIDU0NSB6IE0gOTAwLDQ1IFYgNTQ1IGggMzAgViA0NSBIIDkwMCB6IE0gNDIwLDU0NSBoIDMwIFYgNDUgSCA0MjAgViA1NDUgeiBNIDQ4MCw0NSBWIDU0NSBoIDMwIFYgNDUgaCAtMzAgeiIgc3R5bGU9ImZpbGw6IzMzOTk2NiIgLz4NCiAgPHBhdGggZD0ibSA1NDAsNTQ1IGggOTAgViA0NSBoIC05MCBWIDU0NSB6IG0gMTIwLDAgaCAzMCBWIDQ1IEggNjYwIFYgNTQ1IHogTSA3MjAsNDUgViA1NDUgaCA5MCBWIDQ1IEggNzIwIHoiIHN0eWxlPSJmaWxsOiMwMDY2OTkiIC8+DQo8L3N2Zz4=) no-repeat;
+  background-size: contain;
+  padding-left: 1.8em;
+  margin-right: 0.2em;
+}
+</style>
       </div>
     </main><footer class="site-footer">
 
