@@ -56,7 +56,7 @@ Tested with [NodeJs](https://nodejs.org) version 6 and above.
 pandoc-wikicite consists of two scripts that can be used independently:
 
 * [pwcite] to use Wikidata identifiers in Pandoc citation keys
-* [wcite] to manage locally stored bibliographic data from Wikidata
+* [wcite] to get and locally store bibliographic data from Wikidata
 
 [pwcite]: #pwcite
 [wcite]: #wcite
@@ -135,8 +135,8 @@ The `wcite` script can be used to list or add/update bibliographic data from
 Wikidata in a JSON file:
 
     wcite wikicite.json                    # list Wikidata citekeys
-    wcite wikicite.json update Q18507561   # update/add selected
-    wcite wikicite.json update             # update all
+    wcite update wikicite.json Q18507561   # update/add selected
+    wcite update wikicite.json             # update all
     wcite Q18507561                        # get and format from Wikidata
 
 The file is always sorted by citekey and serialized as pretty-printed, sorted
