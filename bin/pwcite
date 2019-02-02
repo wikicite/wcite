@@ -1,2 +1,12 @@
 #!/usr/bin/env node
-require('../lib/pwcite').run(process.argv.slice(2))
+const args = process.argv.slice(2)
+if (process.stdin.isTTY || !args.length || args[0].match(/^(-h|--help)/)) {
+  console.log(`Usage: pandoc -F pwcite document.md ...
+
+Gets bibliographic records from Wikidata via Pandoc filter.
+See <http://wikicite.org/pandoc-wikicite/> for background.
+
+Try 'wcite' instead to use without Pandoc.`)
+} else {
+  require('../lib/pwcite').run(args)
+}
