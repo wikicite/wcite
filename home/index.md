@@ -8,6 +8,7 @@ citekeys:
   Pandoc: Q2049294 
 nocite: | 
   @Q27044176
+bibliography: references.json
 
 abstract: |
   This document illustrates use of Wikidata as reference manager with

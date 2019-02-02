@@ -22,9 +22,9 @@ Wikidata with [citation.js] and it can be stored locally in a CSL JSON file.
 * [Install](#install)
 * [Usage](#usage)
     * [pwcite](#pwcite)
+    * [Linking to Wikidata](#linking-to-wikidata)
     * [Bibliography files](#bibliography-files)
     * [wcite](#wcite)
-    * [Linking to Wikidata](#linking-to-wikidata)
 * [License](#license)
 
 ## Background
