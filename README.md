@@ -2,48 +2,50 @@
 
 > Use Wikidata as reference manager
 
-[![Build Status](https://travis-ci.com/wikicite/wcite.svg?branch=master)](https://travis-ci.com/wikicite/wcite)
 [![NPM Version](http://img.shields.io/npm/v/wcite.svg?style=flat)](https://www.npmjs.org/package/wcite)
+[![Build Status](https://travis-ci.org/wikicite/wcite.svg?branch=master)](https://travis-ci.org/wikicite/wcite)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![license](https://img.shields.io/github/license/wikicite/wcite.svg)](https://github.com/wikicite/wcite/blob/master/LICENSE.md)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b3bd79d9e25a521d0f57/maintainability)](https://codeclimate.com/github/wikicite/wcite/maintainability)
 
-This [Pandoc filter] supports using [Pandoc citation syntax] to reference
-bibliographic records from [Wikidata]. Bibliographic data is extracted from
-Wikidata with [citation.js] and it can be stored locally in a CSL JSON file.
-
-[Pandoc filter]: https://pandoc.org/filters.html
-[Pandoc citation syntax]: https://pandoc.org/MANUAL.html#citations
-[Wikidata]: https://www.wikidata.org/
-[citation.js]: https://citation.js.org/
-[document metadata]: https://pandoc.org/MANUAL.html#extension-yaml_metadata_block
+This package provides a command line client to fetch and manage bibliographic
+records from [Wikidata] and a [Pandoc filter] to use Wikidata item identifiers
+and aliases as citation keys.
 
 ## Table of Contents
 
+* [Overview](#overview)
+* [Installation](#installation)
 * [Background](#background)
-* [Install](#install)
 * [Usage](#usage)
-    * [pwcite](#pwcite)
-    * [Linking to Wikidata](#linking-to-wikidata)
-    * [Bibliography files](#bibliography-files)
+    * [Introduction](#introduction)
     * [wcite](#wcite)
+    * [pwcite](#pwcite)
+    * [Bibliography files](#bibliography-files)
 * [License](#license)
 
-## Background
+## Overview
 
-The knowledge base Wikidata contains statements about all kinds of entities
-such as people, places, and publications. The [WikiCite] initiative promotes
-using Wikidata as collaboratively curated bibliography. To cite a document it
-only needs methods to reference a corresponding Wikidata item and to extract
-its bibliographic data.
+[Wikidata] contains statements about all kinds of entities such as people,
+places, and publications. The [WikiCite] initiative promotes using Wikidata as
+collaboratively curated bibliography. This package provides:
 
-[WikiCite]: http://wikicite.org/
+* the command line client **[wcite]** to fetch bibliographic records from
+  Wikidata and to manage them locally in [bibliography files] for writing
+  system such as Pandoc and LaTeX.
 
-## Install
+* the Pandoc filter **[pwcite]** to use Wikidata item identifiers as citation keys
+  in [Pandoc citation syntax] and to automatically fetch records from Wikidata.
 
-Install latest release
+See [usage](#usage) for details and examples.
+
+## Installation
+
+Install latest release:
 
     $ npm install -g wcite
 
-Install from source
+Install from source:
 
     $ git clone https://github.com/wikicite/wcite.git
     $ cd wcite
@@ -53,13 +55,49 @@ Tested with [NodeJs](https://nodejs.org) version 6 and above.
 
 ## Usage
 
-wcite consists of two scripts that can be used independently:
+### Introduction
 
-* [pwcite] to use Wikidata identifiers in Pandoc citation keys
-* [wcite] to get and locally store bibliographic data from Wikidata
+Bibliographic entities in Wikidata are referenced by their item identifier. For
+instance [Q55239420] identifies the first edition of Mary Shelley's
+Frankenstein. This can be verified by calling [wcite] with the identifier:
 
-[pwcite]: #pwcite
-[wcite]: #wcite
+    $ wcite Q55239420
+    Q55239420: Shelley, M. (1818). Frankenstein (1st ed.). London
+
+Download the record to [bibliography file] `refs.json`:
+
+    $ wcite refs.json add Q55239420
+
+Records in this file can then be listed and converted:
+
+    $ wcite refs.json
+    Q55239420
+
+    $ wcite refs.json -f bibtex
+	@book{Q55239420,
+	  author={Shelley, Mary},
+	  title={Frankenstein},
+      ...
+
+When writing a document in Pandoc Markdown, it is enough to reference the
+bibliography file via document metadata and directly cite the book with its
+citation key `@Q55239420`. Pandoc filter [pwcite] will automatically download
+the bibliographic data and store it to `refs.json`. 
+
+
+[Q55239420]: http://www.wikidata.org/entity/Q55239420
+
+### wcite
+
+The script `wcite` can be used to list or add/update bibliographic data from
+Wikidata in [bibliography files]:
+
+    wcite wikicite.json                    # list Wikidata identifiers
+    wcite update wikicite.json Q18507561   # update/add selected
+    wcite update wikicite.json             # update all
+    wcite Q18507561                        # get and format from Wikidata
+
+See `wcite --help` for additional information.
 
 ### pwcite
 
@@ -91,17 +129,31 @@ citation keys, downloads the corresponding bibliographic data from Wikidata,
 and adds it to the document. The second filter `pandoc-citeproc` creates
 nicely references using the Citation Stylesheet Language (CSL).
 
-### Bibliography files
+The bibliography generated in HTML format includes Wikidata identifiers for
+each reference. Setting document metadata field `wikidata-links` to `true` or
+to an URL prefix (e.g. `https://tools.wmflabs.org/scholia/work/`) will inject
+two snippets of JavaScript and CSS to add links from references back to Wikidata.
 
-Bibliographic data is downloaded and converted from Wikipedia on each call of
-the filter script `pwcite`. This has limitations for two reasons:
+## Bibliography files
+
+Bibliographic records fetched from Wikidata should be stored locally for several
+reasons:
 
 * performance: network access is slow
-* reproducability: the data could have been been changed on Wikidata
+* reproducibility: the data could have been been changed on Wikidata
 
-You should therefore store bibliographic data in a local file. The file can be
-specified via document metadata field `bibliography` and it must have file
-extension `.json`:
+Both [wcite] and [pwcite] store records in a normalized CSL JSON file. Records
+in this file are sorted by Wikidata item identifier and serialized as
+pretty-printed JSON with sorted keys facilitate comparing changes. Bibliography
+file can be specified:
+
+* via document metadata field `bibliography`
+* as command line argument to [wcite]
+* as existing file `wcite.json` in the current directory
+
+Bibliography files must have file extension `.json`.
+
+Example:
 
     ---
     bibliography: references.json
@@ -109,7 +161,7 @@ extension `.json`:
 
     Wikidata is a collaborative knowledge base [@Q18507561].
 
-The filter script `pwcite` detects a JSON bibliography file, looks up referenced
+The filter script [pwcite] detects a JSON bibliography file, looks up referenced
 Wikidata items in this file, and adds missing entries by lookup in Wikidata.
 
 The filter `pwcite` use the bibliography file for caching. Wikidata identifiers
@@ -128,29 +180,20 @@ file is ok):
 
     $ touch references.json
     $ pandoc -F pwcite --bibliography references.json examples/example-1.md
-
-### wcite
-
-The `wcite` script can be used to list or add/update bibliographic data from
-Wikidata in a JSON file:
-
-    wcite wikicite.json                    # list Wikidata citekeys
-    wcite update wikicite.json Q18507561   # update/add selected
-    wcite update wikicite.json             # update all
-    wcite Q18507561                        # get and format from Wikidata
-
-The file is always sorted by citekey and serialized as pretty-printed, sorted
-JSON so facilitate comparing versions.
  
-### Linking to Wikidata
-
-The bibliography generated in HTML format includes Wikidata identifiers for
-each reference. Setting document metadata field `wikidata-links` to `true` or
-to an URL prefix (e.g. `https://tools.wmflabs.org/scholia/work/`) will inject
-two snippets of JavaScript and CSS to add links from references back to Wikidata.
-
 ## License
 
 MIT license
 
-Contains parts of [pandoc-filter-node](https://github.com/mvhenderson/pandoc-filter-node).
+Fetching and converting data from Wikidata and to BibTeX is implemented with [citation.js].
+
+Contains parts of [pandoc-filter-node](https://github.com/mvhenderson/pandoc-filter-node)
+originally created by Mike Henderson.
+
+[bibliography file]: #bibliography-files
+[Pandoc citation syntax]: https://pandoc.org/MANUAL.html#citations
+[Pandoc filter]: https://pandoc.org/filters.html
+[WikiCite]: http://wikicite.org/
+[Wikidata]: https://www.wikidata.org/
+[citation.js]: https://citation.js.org/
+[document metadata]: https://pandoc.org/MANUAL.html#extension-yaml_metadata_block

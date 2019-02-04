@@ -5,15 +5,15 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Jakob Voß" />
-  <title>wcite for reference managing with Wikidata</title>
+  <title>Wikidata as reference manager</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="/assets/main.css" />
-  <link rel="stylesheet" href="/assets/wikicite.css" />
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/wikicite.css">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -49,15 +49,15 @@
 <main class="page-content" aria-label="Content">
   <div class="wrapper">
 <header>
-<h1 class="title">wcite for reference managing with Wikidata</h1>
+<h1 class="title">Wikidata as reference manager</h1>
 <p class="author">Jakob Voß</p>
 </header>
 <h2 id="wikidata-and-wikicite">Wikidata and WikiCite</h2>
 <p>Wikidata is a community-curated knowledge based that covers and connects all kinds of entities such as people, places, and publications <span class="citation" data-cites="Q18507561">(Vrandečić and Krötzsch 2014)</span>. The WikiCite initiative<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> promotes using Wikidata as universal bibliographic database.</p>
 <p>The benefits of having bibliographic data in a knowledge base are best illustrated by the <a href="https://tools.wmflabs.org/scholia/">Scholia</a> frontend to Wikidata: this website can be used to explore research publications and their connections to authors, institutions, places and other enties <span class="citation" data-cites="Q58484849">(Mietchen, Nielsen, and Willighagen 2018)</span>.</p>
-<h2 id="pandoc-and-wcite">Pandoc and wcite</h2>
+<h2 id="pandoc-and-pwcite">Pandoc and pwcite</h2>
 <p><a href="http://pandoc.org/">Pandoc</a> is a document converter that can be used to write scholarly documents including citations in Markdown syntax <span class="citation" data-cites="Q2049294">(<em>Pandoc</em> (version 2.6), n.d.)</span>. See the <a href="https://pandoc.org/MANUAL.html#citations">Pandoc manual on citations</a> for details. Pandoc allows to process a document via filters during conversion.</p>
-<p><a href="https://github.com/wikicite/wcite">wcite</a> is a Pandoc filter that looks up citations in Wikidata. The bibliographic data can be cached locally in CSL JSON format and formatted in different citation styles based on <a href="https://citationstyles.org/">Citation Style Language</a> <span class="citation" data-cites="Q824708">(<em>Citation Style Language</em> (version 1.0.1), n.d.)</span>.</p>
+<p><a href="https://github.com/wikicite/wcite">pwcite</a> is a Pandoc filter that looks up citations in Wikidata. The bibliographic data can be cached locally in CSL JSON format and formatted in different citation styles based on <a href="https://citationstyles.org/">Citation Style Language</a> <span class="citation" data-cites="Q824708">(<em>Citation Style Language</em> (version 1.0.1), n.d.)</span>.</p>
 <p>This document is an example of a document converted with wcite (see <a href="https://raw.githubusercontent.com/wikicite/wcite/master/home/index.md">Markdown source code</a>).</p>
 <p>Further information about pandoc-wikicate can be found here:</p>
 <ul>
@@ -77,10 +77,10 @@
 <p><em>Pandoc</em> (version 2.6). n.d.</p>
 </div>
 <div id="ref-Q27044176">
-<p>Voss, Jakob. 2016. <em>Wikidata Als Universalbibliographie: Ein Kommentar</em>. <em>LIBREAS</em>. doi:<a href="https://doi.org/10.18452/9090">10.18452/9090</a>.</p>
+<p>Voss, Jakob. 2016. <em>Wikidata Als Universalbibliographie: Ein Kommentar</em>. <em>LIBREAS</em>. <a href="https://doi.org/10.18452/9090" class="uri">https://doi.org/10.18452/9090</a>.</p>
 </div>
 <div id="ref-Q18507561">
-<p>Vrandečić, Denny, and Markus Krötzsch. 2014. “Wikidata: A Free Collaborative Knowledgebase.” <em>Communications of the ACM</em> 57 (10): 78–85. doi:<a href="https://doi.org/10.1145/2629489">10.1145/2629489</a>.</p>
+<p>Vrandečić, Denny, and Markus Krötzsch. 2014. “Wikidata: A Free Collaborative Knowledgebase.” <em>Communications of the ACM</em> 57 (10): 78–85. <a href="https://doi.org/10.1145/2629489" class="uri">https://doi.org/10.1145/2629489</a>.</p>
 </div>
 </div>
 <section class="footnotes">
