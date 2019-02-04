@@ -1,5 +1,5 @@
 ---
-title: wcite for reference managing with Wikidata
+title: Wikidata as reference manager
 author: Jakob Voß
 
 wikidata-links: true
@@ -27,14 +27,14 @@ illustrated by the [Scholia] frontend to Wikidata: this website can be used to
 explore research publications and their connections to authors, institutions,
 places and other enties [@Scholia].
 
-## Pandoc and wcite
+## Pandoc and pwcite
 
 [Pandoc] is a document converter that can be used to write scholarly documents
 including citations in Markdown syntax [@Pandoc]. See the [Pandoc manual on
 citations](https://pandoc.org/MANUAL.html#citations) for details. Pandoc allows
 to process a document via filters during conversion.
 
-[wcite] is a Pandoc filter that looks up citations in Wikidata. The
+[pwcite] is a Pandoc filter that looks up citations in Wikidata. The
 bibliographic data can be cached locally in CSL JSON format and formatted in 
 different citation styles based on [Citation Style Language] @Q824708.
 
@@ -49,6 +49,7 @@ Further information about pandoc-wikicate can be found here:
 
 [Citation Style Language]: https://citationstyles.org/
 [Pandoc]: http://pandoc.org/
+[pwcite]: https://github.com/wikicite/wcite
 [wcite]: https://github.com/wikicite/wcite
 [Scholia]: https://tools.wmflabs.org/scholia/
 
