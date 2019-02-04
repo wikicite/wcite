@@ -2,4 +2,4 @@
 citekeys:
   Scholia: Q58484849
   Pandoc: Q2049294 
-bibliography: refs.json
+bibliography: citekeys.json

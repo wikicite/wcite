@@ -1,16 +1,16 @@
 /* eslint-env mocha */
-const should = require('should')
-const fs = require('fs')
+const { should, fs, pkgfile } = require('./util')
 const { extractCitekeys } = require('../lib/pwcite')
 
 describe('extract citekeys', () => {
   let examples = {
     'minimal': { Q18507561: 'Q18507561' },
-    'example-1': { Vrand04: 'Q18507561' }
+    'example-1': { Vrand04: 'Q18507561' },
+    'nocite': { Q55239420: 'Q55239420', foo: '' }
   }
 
   for (let name in examples) {
-    let file = `examples/${name}.json`
+    let file = pkgfile(`examples/${name}.json`)
     it(name, () => {
       let doc = JSON.parse(fs.readFileSync(file))
       let keys = extractCitekeys(doc)

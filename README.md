@@ -19,9 +19,10 @@ and aliases as citation keys.
 * [Background](#background)
 * [Usage](#usage)
     * [Introduction](#introduction)
-    * [wcite](#wcite)
-    * [pwcite](#pwcite)
+    * [Command wcite](#command-wcite)
+    * [Filter pwcite](#filter-pwcite)
     * [Bibliography files](#bibliography-files)
+* [API](#api)
 * [License](#license)
 
 ## Overview
@@ -87,7 +88,7 @@ the bibliographic data and store it to `refs.json`.
 
 [Q55239420]: http://www.wikidata.org/entity/Q55239420
 
-### wcite
+### Command wcite
 
 The script `wcite` can be used to list or add/update bibliographic data from
 Wikidata in [bibliography files]:
@@ -99,7 +100,7 @@ Wikidata in [bibliography files]:
 
 See `wcite --help` for additional information.
 
-### pwcite
+### Filter pwcite
 
 Write your documents in Markdown with [Pandoc citation syntax]. In short,
 reference publications via citation keys prepended by `@`:
@@ -181,6 +182,29 @@ file is ok):
     $ touch references.json
     $ pandoc -F pwcite --bibliography references.json examples/example-1.md
  
+## API
+
+The JavaScript API to use this package as module is not finished yet. Stable
+parts include:
+
+### Bibliography
+
+This class implements a file store of CSL JSON records from Wikidata.
+
+~~~js
+const { Bibliography } = require('wcite')
+
+var refs = new Bibliography('refs.json')
+
+if (refs.modified) {
+  refs.save()
+}
+~~~
+
+### wcite
+
+Provides the implementation of command [wcite-cli]
+
 ## License
 
 MIT license
@@ -190,6 +214,8 @@ Fetching and converting data from Wikidata and to BibTeX is implemented with [ci
 Contains parts of [pandoc-filter-node](https://github.com/mvhenderson/pandoc-filter-node)
 originally created by Mike Henderson.
 
+[wcite]: #command-wcite
+[pwcite]: #filter-pwcite
 [bibliography file]: #bibliography-files
 [Pandoc citation syntax]: https://pandoc.org/MANUAL.html#citations
 [Pandoc filter]: https://pandoc.org/filters.html

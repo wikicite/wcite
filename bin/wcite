@@ -1,2 +1,89 @@
 #!/usr/bin/env node
-require('../lib/wcite').run(process.argv.slice(2))
+const cli = require('../lib/cli')
+const wcite = require('../lib/wcite')
+const path = require('path')
+
+// get version number without requiring the module
+function packageVersion(module) {
+  const dir = path.dirname(require.resolve(module))
+  return module + ' ' + require(path.join(dir, 'package.json')).version
+}
+
+const { version } = require('../package.json')
+
+cli
+.version(`wcite ${version} with ` + packageVersion('citation-js'))
+.usage('[options] [command] [file] [ids...]')
+.description(`Manage bibliographic data from Wikidata. Bibliography CSL JSON file
+can be specified explicitly or via YAML header field 'bibliography'.`)
+
+.option('-b, --bibliography <file>', 'Bibliography file (CSL JSON)')
+.option('-d, --document <file>', 'Document file with YAML header')
+.option('-f, --format <name>', 'Output format (text|html|bibtex|json|ndjson)')
+.option('-t, --template <name>', 'Citation template (apa|vancouver|harvard1)')
+.option('-l, --lanuage <lang>', 'Language code')
+
+const commands = {
+  add: [' <ids...>', 'add records specified by Wikidata identifiers'],
+  show: [' [ids...]', 'show bibliographic records'],
+  update: [' [ids...]', 'update bibliographic records'],
+  list: ['', 'list Wikidata identifiers and aliases'],
+  help: ['', 'display this usage help']
+}
+
+for (let cmd in commands) {
+  cli.command(cmd + commands[cmd][0]).description(commands[cmd][1])
+}
+
+cli
+.example('refs.json          # list Wikidata ids reyfs.json')
+.example('update refs.json   # update all entries in refs.json')
+.example('Q18507561          # get bibliographic data from Wikidata')
+
+cli.parse(process.argv)
+
+let args = cli.args
+let command
+
+const { isQid } = require('../lib/util/wikidata')
+const isFile = path => path && path.match(/\.[a-z]/)
+
+function optionalFileArg() {
+  if (args.length) {
+    if (args[0].match(/\.json$/) && cli.bibliography === undefined) {
+      cli.bibliography = args.shift()
+    } else if (!isQid(args[0]) && args[0].match(/\.[a-z]+/) && cli.document === undefined) {
+      cli.document = args.shift()
+    }
+  }
+}
+
+if (args.length) {
+  if (args[0].match(/^[a-z]+$/)) {  // <command> [file] [ids...]
+    command = args.shift()
+    optionalFileArg()
+  } else {                          // [file] [command] [ids...]
+    optionalFileArg()
+    if (args.length && args[0].match(/^[a-z]+$/)) {
+      command = args.shift()
+    } else if (cli.format || cli.template) {
+      command = 'show'
+    } else if ((cli.bibliography || cli.document) && !args.length) {
+      command = 'list'
+    } else {                        // fetch data and directly show it
+      command = 'show'
+    }
+  }
+} else {
+  cli.help()
+}
+
+if (command === 'help') {
+  cli.help()
+} else {
+  if (!(command in commands)) {
+    console.error(`unknown command "${command}". Try "wcite help"!`)
+    process.exit(1)
+  }
+  wcite(cli)[command](args)
+}

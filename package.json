@@ -1,6 +1,6 @@
 {
   "name": "wcite",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Use Wikidata as reference manager",
   "homepage": "https://github.com/wikicite/wcite#readme",
   "author": "Jakob Voß",
@@ -13,7 +13,7 @@
     "pwcite": "./bin/pwcite",
     "wcite": "./bin/wcite"
   },
-  "main": "lib/pwcite.js",
+  "main": "index.js",
   "files": [
     "lib/",
     "bin/pwcite",
@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "citation-js": "^0.4.0-11",
-    "minimist": "^1.2.0",
+    "commander": "^2.19.0",
     "yaml": "^1.3.1"
   },
   "devDependencies": {

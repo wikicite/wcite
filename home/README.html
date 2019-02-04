@@ -11,6 +11,71 @@
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
   <link rel="stylesheet" href="/assets/main.css">
   <link rel="stylesheet" href="/assets/wikicite.css">
   <!--[if lt IE 9]>
@@ -52,7 +117,7 @@
 <p>Use Wikidata as reference manager</p>
 </blockquote>
 <p><a href="https://www.npmjs.org/package/wcite"><img src="http://img.shields.io/npm/v/wcite.svg?style=flat" alt="NPM Version" /></a> <a href="https://travis-ci.org/wikicite/wcite"><img src="https://travis-ci.org/wikicite/wcite.svg?branch=master" alt="Build Status" /></a> <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a> <a href="https://github.com/wikicite/wcite/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/wikicite/wcite.svg" alt="license" /></a> <a href="https://codeclimate.com/github/wikicite/wcite/maintainability"><img src="https://api.codeclimate.com/v1/badges/b3bd79d9e25a521d0f57/maintainability" alt="Maintainability" /></a></p>
-<p>This package provides a command line client to fetch and manage bibliographic records from <a href="https://www.wikidata.org/">Wikidata</a> and a <a href="https://pandoc.org/filters.html">Pandoc filter</a> to use Wikidata item identifiers as citation keys.</p>
+<p>This package provides a command line client to fetch and manage bibliographic records from <a href="https://www.wikidata.org/">Wikidata</a> and a <a href="https://pandoc.org/filters.html">Pandoc filter</a> to use Wikidata item identifiers and aliases as citation keys.</p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
 <li><a href="#overview">Overview</a></li>
@@ -60,19 +125,21 @@
 <li><a href="#background">Background</a></li>
 <li><a href="#usage">Usage</a>
 <ul>
-<li><a href="#wcite">wcite</a></li>
-<li><a href="#pwcite">pwcite</a></li>
-<li><a href="#linking-to-wikidata">Linking to Wikidata</a></li>
-</ul></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#command-wcite">Command wcite</a></li>
+<li><a href="#filter-pwcite">Filter pwcite</a></li>
 <li><a href="#bibliography-files">Bibliography files</a></li>
+</ul></li>
+<li><a href="#api">API</a></li>
 <li><a href="#license">License</a></li>
 </ul>
 <h2 id="overview">Overview</h2>
 <p><a href="https://www.wikidata.org/">Wikidata</a> contains statements about all kinds of entities such as people, places, and publications. The <a href="http://wikicite.org/">WikiCite</a> initiative promotes using Wikidata as collaboratively curated bibliography. This package provides:</p>
 <ul>
-<li><p>command line client <strong><a href="#wcite-1">wcite</a></strong> to fetch bibliographic records from Wikidata and to manage them locally in <a href="#bibliography-files">bibliography files</a> for writing system such as Pandoc and LaTeX.</p></li>
-<li><p>Pandoc filter <strong><a href="#pwcite">pwcite</a></strong> to use Wikidata item identifiers as citation keys in <a href="https://pandoc.org/MANUAL.html#citations">Pandoc citation syntax</a> and to automatically fetch records from Wikidata.</p></li>
+<li><p>the command line client <strong><a href="#command-wcite">wcite</a></strong> to fetch bibliographic records from Wikidata and to manage them locally in <a href="#bibliography-files">bibliography files</a> for writing system such as Pandoc and LaTeX.</p></li>
+<li><p>the Pandoc filter <strong><a href="#filter-pwcite">pwcite</a></strong> to use Wikidata item identifiers as citation keys in <a href="https://pandoc.org/MANUAL.html#citations">Pandoc citation syntax</a> and to automatically fetch records from Wikidata.</p></li>
 </ul>
+<p>See <a href="#usage">usage</a> for details and examples.</p>
 <h2 id="installation">Installation</h2>
 <p>Install latest release:</p>
 <pre><code>$ npm install -g wcite</code></pre>
@@ -82,14 +149,30 @@ $ cd wcite
 $ npm install -g .  # or `npm link`</code></pre>
 <p>Tested with <a href="https://nodejs.org">NodeJs</a> version 6 and above.</p>
 <h2 id="usage">Usage</h2>
-<h3 id="wcite-1">wcite</h3>
+<h3 id="introduction">Introduction</h3>
+<p>Bibliographic entities in Wikidata are referenced by their item identifier. For instance <a href="http://www.wikidata.org/entity/Q55239420">Q55239420</a> identifies the first edition of Mary Shelley’s Frankenstein. This can be verified by calling <a href="#command-wcite">wcite</a> with the identifier:</p>
+<pre><code>$ wcite Q55239420
+Q55239420: Shelley, M. (1818). Frankenstein (1st ed.). London</code></pre>
+<p>Download the record to <a href="#bibliography-files">bibliography file</a> <code>refs.json</code>:</p>
+<pre><code>$ wcite refs.json add Q55239420</code></pre>
+<p>Records in this file can then be listed and converted:</p>
+<pre><code>$ wcite refs.json
+Q55239420
+
+$ wcite refs.json -f bibtex
+@book{Q55239420,
+  author={Shelley, Mary},
+  title={Frankenstein},
+  ...</code></pre>
+<p>When writing a document in Pandoc Markdown, it is enough to reference the bibliography file via document metadata and directly cite the book with its citation key <code>@Q55239420</code>. Pandoc filter <a href="#filter-pwcite">pwcite</a> will automatically download the bibliographic data and store it to <code>refs.json</code>.</p>
+<h3 id="command-wcite">Command wcite</h3>
 <p>The script <code>wcite</code> can be used to list or add/update bibliographic data from Wikidata in <a href="#bibliography-files">bibliography files</a>:</p>
-<pre><code>wcite wikicite.json                    # list Wikidata citekeys
+<pre><code>wcite wikicite.json                    # list Wikidata identifiers
 wcite update wikicite.json Q18507561   # update/add selected
 wcite update wikicite.json             # update all
 wcite Q18507561                        # get and format from Wikidata</code></pre>
 <p>See <code>wcite --help</code> for additional information.</p>
-<h3 id="pwcite">pwcite</h3>
+<h3 id="filter-pwcite">Filter pwcite</h3>
 <p>Write your documents in Markdown with <a href="https://pandoc.org/MANUAL.html#citations">Pandoc citation syntax</a>. In short, reference publications via citation keys prepended by <code>@</code>:</p>
 <pre><code>Blah blah [@doe95; @doe99], disputed by @alice07.</code></pre>
 <p>Publications listed in Wikidata can be referenced by their item identifier:</p>
@@ -111,11 +194,11 @@ Wikidata is a collaborative knowledge base [@Vrand04].</code></pre>
 <li>performance: network access is slow</li>
 <li>reproducibility: the data could have been been changed on Wikidata</li>
 </ul>
-<p>Both <a href="#wcite-1">wcite</a> and <a href="#pwcite">pwcite</a> store records in a normalized CSL JSON file. Records in this file are sorted by Wikidata item identifier and serialized as pretty-printed JSON with sorted keys facilitate comparing changes.</p>
-<p>Bibliography file can be specified:</p>
+<p>Both <a href="#command-wcite">wcite</a> and <a href="#filter-pwcite">pwcite</a> store records in a normalized CSL JSON file. Records in this file are sorted by Wikidata item identifier and serialized as pretty-printed JSON with sorted keys facilitate comparing changes. Bibliography file can be specified:</p>
 <ul>
 <li>via document metadata field <code>bibliography</code></li>
-<li>as command line argument to <a href="#wcite-1">wcite</a></li>
+<li>as command line argument to <a href="#command-wcite">wcite</a></li>
+<li>as existing file <code>wcite.json</code> in the current directory</li>
 </ul>
 <p>Bibliography files must have file extension <code>.json</code>.</p>
 <p>Example:</p>
@@ -124,15 +207,28 @@ bibliography: references.json
 ...
 
 Wikidata is a collaborative knowledge base [@Q18507561].</code></pre>
-<p>The filter script <code>pwcite</code> detects a JSON bibliography file, looks up referenced Wikidata items in this file, and adds missing entries by lookup in Wikidata.</p>
-<p>The filter <code>pwcite</code> use the bibliography file for caching. Wikidata identifiers are first looked up in the file. If an identifier is not found, its data is queried from Wikidata and written to the file, so each existing Wikidata identifier is only queried once. Use <a href="#wcite-1">wcite</a> or delete the file for updates.</p>
+<p>The filter script <a href="#filter-pwcite">pwcite</a> detects a JSON bibliography file, looks up referenced Wikidata items in this file, and adds missing entries by lookup in Wikidata.</p>
+<p>The filter <code>pwcite</code> use the bibliography file for caching. Wikidata identifiers are first looked up in the file. If an identifier is not found, its data is queried from Wikidata and written to the file, so each existing Wikidata identifier is only queried once. Use <a href="#command-wcite">wcite</a> or delete the file for updates.</p>
 <p>If multiple bibliography files are specified then <code>pwcite</code> only uses the first file with extension <code>.json</code>, so bibliographic data from Wikidata and from other sources, for instance BibTeX files, can be mixed.</p>
 <p>It is also possible to pass the filename with pandoc option <code>--bibliography</code>. This overrides bibliography files in the document metadata and automatically enables filter <code>pandoc-citeproc</code>, but the file must exist in advance (an empty file is ok):</p>
 <pre><code>$ touch references.json
 $ pandoc -F pwcite --bibliography references.json examples/example-1.md</code></pre>
+<h2 id="api">API</h2>
+<p>The JavaScript API to use this package as module is not finished yet. Stable parts include:</p>
+<h3 id="bibliography">Bibliography</h3>
+<p>This class implements a file store of CSL JSON records from Wikidata.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">const</span> <span class="op">{</span> Bibliography <span class="op">}</span> <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;wcite&#39;</span>)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">var</span> refs <span class="op">=</span> <span class="kw">new</span> <span class="at">Bibliography</span>(<span class="st">&#39;refs.json&#39;</span>)</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="cf">if</span> (<span class="va">refs</span>.<span class="at">modified</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">  <span class="va">refs</span>.<span class="at">save</span>()</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="op">}</span></a></code></pre></div>
+<h3 id="wcite-1">wcite</h3>
+<p>Provides the implementation of command [wcite-cli]</p>
 <h2 id="license">License</h2>
 <p>MIT license</p>
-<p>Fetching and converting data from Wikidata and to BibTeX is implemented with [citation-js].</p>
+<p>Fetching and converting data from Wikidata and to BibTeX is implemented with <a href="https://citation.js.org/">citation.js</a>.</p>
 <p>Contains parts of <a href="https://github.com/mvhenderson/pandoc-filter-node">pandoc-filter-node</a> originally created by Mike Henderson.</p>
       </div>
     </main><footer class="site-footer">
