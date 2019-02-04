@@ -1,13 +1,13 @@
 {
-  "name": "pandoc-wikicite",
-  "version": "0.3.0",
-  "description": "Pandoc filter to use Wikidata as reference manager",
-  "homepage": "https://github.com/wikicite/pandoc-wikicite#readme",
+  "name": "wcite",
+  "version": "0.3.1",
+  "description": "Use Wikidata as reference manager",
+  "homepage": "https://github.com/wikicite/wcite#readme",
   "author": "Jakob Voß",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wikicite/pandoc-wikicite.git"
+    "url": "https://github.com/wikicite/wcite.git"
   },
   "bin": {
     "pwcite": "./bin/pwcite",
@@ -19,7 +19,8 @@
     "bin/pwcite",
     "bin/wcite",
     "assets/wikidata-links.js",
-    "assets/wikidata-links.css"
+    "assets/wikidata-links.css",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "test": "mocha",

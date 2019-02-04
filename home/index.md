@@ -1,5 +1,5 @@
 ---
-title: pandoc-wikicite for reference managing with Wikidata
+title: wcite for reference managing with Wikidata
 author: Jakob Voß
 
 wikidata-links: true
@@ -12,7 +12,7 @@ bibliography: references.json
 
 abstract: |
   This document illustrates use of Wikidata as reference manager with
-  [pandoc-wikicite](https://www.npmjs.com/package/pandoc-wikicite)
+  [wcite](https://www.npmjs.com/package/wcite)
 ...
 
 ## Wikidata and WikiCite
@@ -27,34 +27,34 @@ illustrated by the [Scholia] frontend to Wikidata: this website can be used to
 explore research publications and their connections to authors, institutions,
 places and other enties [@Scholia].
 
-## Pandoc and pandoc-wikicite
+## Pandoc and wcite
 
 [Pandoc] is a document converter that can be used to write scholarly documents
 including citations in Markdown syntax [@Pandoc]. See the [Pandoc manual on
 citations](https://pandoc.org/MANUAL.html#citations) for details. Pandoc allows
 to process a document via filters during conversion.
 
-[pandoc-wikicite] is a Pandoc filter that looks up citations in Wikidata. The
+[wcite] is a Pandoc filter that looks up citations in Wikidata. The
 bibliographic data can be cached locally in CSL JSON format and formatted in 
 different citation styles based on [Citation Style Language] @Q824708.
 
-This document is an example of a document converted with pandoc-wikicite
-(see [Markdown source code](https://raw.githubusercontent.com/wikicite/pandoc-wikicite/master/home/index.md)).
+This document is an example of a document converted with wcite
+(see [Markdown source code](https://raw.githubusercontent.com/wikicite/wcite/master/home/index.md)).
  
 Further information about pandoc-wikicate can be found here:
 
-* <https://www.npmjs.org/package/pandoc-wikicite>
-* <https://github.com/wikicite/pandoc-wikicite#readme>
+* <https://www.npmjs.org/package/wcite>
+* <https://github.com/wikicite/wcite#readme>
 
 
 [Citation Style Language]: https://citationstyles.org/
 [Pandoc]: http://pandoc.org/
-[pandoc-wikicite]: https://github.com/wikicite/pandoc-wikicite
+[wcite]: https://github.com/wikicite/wcite
 [Scholia]: https://tools.wmflabs.org/scholia/
 
 ## References
 
 This bibliography has automatically been created with pandoc-citeproc and
-pandoc-wikicite. See [`references.json`](references.json) for the generated
+wcite. See [`references.json`](references.json) for the generated
 bibliography in CSL JSON format.
 

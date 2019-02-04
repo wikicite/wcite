@@ -1,9 +1,9 @@
-# pandoc-wikicite
+# wcite
 
-> Pandoc filter to use Wikidata as reference manager
+> Use Wikidata as reference manager
 
-[![Build Status](https://travis-ci.com/wikicite/pandoc-wikicite.svg?branch=master)](https://travis-ci.com/wikicite/pandoc-wikicite)
-[![NPM Version](http://img.shields.io/npm/v/pandoc-wikicite.svg?style=flat)](https://www.npmjs.org/package/pandoc-wikicite)
+[![Build Status](https://travis-ci.com/wikicite/wcite.svg?branch=master)](https://travis-ci.com/wikicite/wcite)
+[![NPM Version](http://img.shields.io/npm/v/wcite.svg?style=flat)](https://www.npmjs.org/package/wcite)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 This [Pandoc filter] supports using [Pandoc citation syntax] to reference
@@ -41,19 +41,19 @@ its bibliographic data.
 
 Install latest release
 
-    $ npm install -g pandoc-wikicite
+    $ npm install -g wcite
 
 Install from source
 
-    $ git clone https://github.com/wikicite/pandoc-wikicite.git
-    $ cd pandoc-wikicite
+    $ git clone https://github.com/wikicite/wcite.git
+    $ cd wcite
     $ npm install -g .  # or `npm link`
 
 Tested with [NodeJs](https://nodejs.org) version 6 and above.
 
 ## Usage
 
-pandoc-wikicite consists of two scripts that can be used independently:
+wcite consists of two scripts that can be used independently:
 
 * [pwcite] to use Wikidata identifiers in Pandoc citation keys
 * [wcite] to get and locally store bibliographic data from Wikidata
