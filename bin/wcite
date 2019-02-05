@@ -42,11 +42,11 @@ cli
 
 cli.parse(process.argv)
 
-let args = cli.args
-let command
-
-const { isQid } = require('../lib/util/wikidata')
+const { isQid, cutQid } = require('../lib/util/wikidata')
 const isFile = path => path && path.match(/\.[a-z]/)
+
+let args = cli.args.map(cutQid)
+let command
 
 function optionalFileArg() {
   if (args.length) {
