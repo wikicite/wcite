@@ -1,0 +1,25 @@
+[
+  {
+    "author": [
+      {
+        "_ordinal": -1,
+        "family": "Shelley",
+        "given": "Mary"
+      }
+    ],
+    "edition": "1",
+    "id": "Q55239420",
+    "issued": {
+      "date-parts": [
+        [
+          1818,
+          1,
+          1
+        ]
+      ]
+    },
+    "publisher-place": "London",
+    "title": "Frankenstein",
+    "type": "book"
+  }
+]

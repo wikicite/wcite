@@ -29,14 +29,14 @@ and aliases as citation keys.
 
 [Wikidata] contains statements about all kinds of entities such as people,
 places, and publications. The [WikiCite] initiative promotes using Wikidata as
-collaboratively curated bibliography. This package provides:
+collaboratively curated bibliography. This node package provides:
 
 * the command line client **[wcite]** to fetch bibliographic records from
   Wikidata and to manage them locally in [bibliography files] for writing
   system such as Pandoc and LaTeX.
 
 * the Pandoc filter **[pwcite]** to use Wikidata item identifiers as citation keys
-  in [Pandoc citation syntax] and to automatically fetch records from Wikidata.
+  in [Pandoc citation syntax] automatically fetching records from Wikidata.
 
 See [usage](#usage) for details and examples.
 
@@ -58,18 +58,19 @@ Tested with [NodeJs](https://nodejs.org) version 6 and above.
 
 ### Introduction
 
-Bibliographic entities in Wikidata are referenced by their item identifier. For
-instance [Q55239420] identifies the first edition of Mary Shelley's
-Frankenstein. This can be verified by calling [wcite] with the identifier:
+Bibliographic entities in Wikidata can be referenced by their item identifier.
+For instance [Q55239420] identifies the first edition of Mary Shelley's
+Frankenstein. The bibliographic data can be shown by calling [wcite] with the
+identifier:
 
     $ wcite Q55239420
     Q55239420: Shelley, M. (1818). Frankenstein (1st ed.). London
 
-Download the record to [bibliography file] `refs.json`:
+Better save the data in a local [bibliography file]:
 
     $ wcite refs.json add Q55239420
 
-Records in this file can then be listed and converted:
+Local records in this file can then be listed in multiple formats:
 
     $ wcite refs.json
     Q55239420
@@ -217,6 +218,7 @@ originally created by Mike Henderson.
 [wcite]: #command-wcite
 [pwcite]: #filter-pwcite
 [bibliography file]: #bibliography-files
+[bibliography files]: #bibliography-file
 [Pandoc citation syntax]: https://pandoc.org/MANUAL.html#citations
 [Pandoc filter]: https://pandoc.org/filters.html
 [WikiCite]: http://wikicite.org/

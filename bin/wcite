@@ -21,7 +21,8 @@ can be specified explicitly or via YAML header field 'bibliography'.`)
 .option('-d, --document <file>', 'Document file with YAML header')
 .option('-f, --format <name>', 'Output format (text|html|bibtex|json|ndjson)')
 .option('-t, --template <name>', 'Citation template (apa|vancouver|harvard1)')
-.option('-l, --lanuage <lang>', 'Language code')
+.option('-l, --language <lang>', 'Language code')
+.option('-q, --quiet', 'Avoid status output')
 
 const commands = {
   add: [' <ids...>', 'add records specified by Wikidata identifiers'],
