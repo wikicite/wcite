@@ -1,3 +1,6 @@
+0.3.2 (2019-02-06)
+
+* wcite: only update known ids
 * wcite: add option --quiet
 * wcite: support Wikidata identifiers given as URL/URI
 
