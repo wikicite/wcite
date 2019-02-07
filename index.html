@@ -4,16 +4,78 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Jakob Voß" />
-  <title>Wikidata as reference manager</title>
-  <style type="text/css">
+  <title>wcite</title>
+  <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="/assets/main.css">
-  <link rel="stylesheet" href="/assets/wikicite.css">
+  <style>
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/assets/main.css" />
+  <link rel="stylesheet" href="/assets/wikicite.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -48,47 +110,177 @@
 </header>
 <main class="page-content" aria-label="Content">
   <div class="wrapper">
-<header>
-<h1 class="title">Wikidata as reference manager</h1>
-<p class="author">Jakob Voß</p>
-</header>
-<h2 id="wikidata-and-wikicite">Wikidata and WikiCite</h2>
-<p>Wikidata is a community-curated knowledge based that covers and connects all kinds of entities such as people, places, and publications <span class="citation" data-cites="Q18507561">(Vrandečić and Krötzsch 2014)</span>. The WikiCite initiative<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> promotes using Wikidata as universal bibliographic database.</p>
-<p>The benefits of having bibliographic data in a knowledge base are best illustrated by the <a href="https://tools.wmflabs.org/scholia/">Scholia</a> frontend to Wikidata: this website can be used to explore research publications and their connections to authors, institutions, places and other enties <span class="citation" data-cites="Q58484849">(Mietchen, Nielsen, and Willighagen 2018)</span>.</p>
-<h2 id="pandoc-and-pwcite">Pandoc and pwcite</h2>
-<p><a href="http://pandoc.org/">Pandoc</a> is a document converter that can be used to write scholarly documents including citations in Markdown syntax <span class="citation" data-cites="Q2049294">(<em>Pandoc</em> (version 2.6), n.d.)</span>. See the <a href="https://pandoc.org/MANUAL.html#citations">Pandoc manual on citations</a> for details. Pandoc allows to process a document via filters during conversion.</p>
-<p><a href="https://github.com/wikicite/wcite">pwcite</a> is a Pandoc filter that looks up citations in Wikidata. The bibliographic data can be cached locally in CSL JSON format and formatted in different citation styles based on <a href="https://citationstyles.org/">Citation Style Language</a> <span class="citation" data-cites="Q824708">(<em>Citation Style Language</em> (version 1.0.1), n.d.)</span>.</p>
-<p>This document is an example of a document converted with wcite (see <a href="https://raw.githubusercontent.com/wikicite/wcite/master/home/index.md">Markdown source code</a>).</p>
-<p>Further information about pandoc-wikicate can be found here:</p>
+<h1 id="wcite">wcite</h1>
+<blockquote>
+<p>Use Wikidata as reference manager</p>
+</blockquote>
+<p><a href="https://www.npmjs.org/package/wcite"><img src="http://img.shields.io/npm/v/wcite.svg?style=flat" alt="NPM Version" /></a> <a href="https://travis-ci.org/wikicite/wcite"><img src="https://travis-ci.org/wikicite/wcite.svg?branch=master" alt="Build Status" /></a> <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a> <a href="https://github.com/wikicite/wcite/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/wikicite/wcite.svg" alt="license" /></a> <a href="https://codeclimate.com/github/wikicite/wcite/maintainability"><img src="https://api.codeclimate.com/v1/badges/b3bd79d9e25a521d0f57/maintainability" alt="Maintainability" /></a></p>
+<p>This JavaScript package provides <a href="#command-wcite">a command line client</a> to fetch and manage bibliographic records from <a href="https://www.wikidata.org/">Wikidata</a> and a <a href="https://pandoc.org/filters.html">Pandoc filter</a> to use Wikidata item identifiers and aliases as citation keys.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
 <ul>
-<li><a href="https://www.npmjs.org/package/wcite" class="uri">https://www.npmjs.org/package/wcite</a></li>
-<li><a href="https://github.com/wikicite/wcite#readme" class="uri">https://github.com/wikicite/wcite#readme</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#background">Background</a></li>
+<li><a href="#usage">Usage</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#command-wcite">Command wcite</a></li>
+<li><a href="#filter-pwcite">Filter pwcite</a></li>
+<li><a href="#bibliography-files">Bibliography files</a></li>
+</ul></li>
+<li><a href="#api">API</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#references">References</a></li>
 </ul>
+<h2 id="overview">Overview</h2>
+<p><a href="https://www.wikidata.org/">Wikidata</a> contains statements about all kinds of entities such as people, places, and publications. The <a href="http://wikicite.org/">WikiCite</a> initiative promotes using Wikidata as collaboratively curated bibliography. The <a href="https://www.npmjs.org/package/wcite">JavaScript package wcite</a> provides:</p>
+<ul>
+<li><p>the command line client <strong><a href="#command-wcite">wcite</a></strong> to fetch bibliographic records from Wikidata and to manage them locally in <a href="#bibliography-file">bibliography files</a> for writing system such as Pandoc and LaTeX.</p></li>
+<li><p>the Pandoc filter <strong><a href="#filter-pwcite">pwcite</a></strong> to use Wikidata item identifiers as citation keys in <a href="https://pandoc.org/MANUAL.html#citations">Pandoc citation syntax</a> to automatically fetch records from Wikidata.</p></li>
+</ul>
+<p>See <a href="#usage">usage</a> for details and examples.</p>
+<h2 id="installation">Installation</h2>
+<p>Install latest release:</p>
+<pre><code>$ npm install -g wcite</code></pre>
+<p>Install from source:</p>
+<pre><code>$ git clone https://github.com/wikicite/wcite.git
+$ cd wcite
+$ npm install -g .  # or `npm link`</code></pre>
+<p>Tested with <a href="https://nodejs.org">NodeJs</a> version 6 and above.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="introduction">Introduction</h3>
+<p>Bibliographic entities in Wikidata are referenced by their item identifier. For instance <a href="http://www.wikidata.org/entity/Q55239420"><code>Q55239420</code></a> identifies the first edition of <a href="https://en.wikipedia.org/wiki/Frankenstein">Mary Shelley’s novel <em>Frankenstein</em></a>. Its bibliographic data can be shown by calling <a href="#command-wcite">wcite</a> with the identifier:</p>
+<pre><code>$ wcite Q55239420
+Q55239420: Shelley, M. (1818). Frankenstein (1st ed.). London</code></pre>
+<p>It is recommended to save the data in a local <a href="#bibliography-files">bibliography file</a> to not query Wikidata each time the record is needed:</p>
+<pre><code>$ wcite refs.json add Q55239420
+Q55239420 added</code></pre>
+<p>Records from this file can then be listed in multiple formats:</p>
+<pre><code>$ wcite refs.json
+Q55239420
+
+$ wcite refs.json -f bibtex
+@book{Q55239420,
+  author={Shelley, Mary},
+  title={Frankenstein},
+  edition=1,
+  ...</code></pre>
+<p>All this is done automatically with Pandoc filter <a href="#filter-pwcite">pwcite</a>.</p>
+<h3 id="command-wcite">Command wcite</h3>
+<p>The command line script <code>wcite</code> can fetch and transform bibliographic data from Wikidata and locally manage it in a <a href="#bibliography-files">bibliography file</a>. In addition to bibliography files the script can read and write document files with YAML header.</p>
+<pre><code>Usage: wcite [options] [command] [file] [ids...]
+
+Manage bibliographic data from Wikidata. Bibliography CSL JSON file
+can be specified explicitly or via YAML header field &#39;bibliography&#39;.
+
+Options:
+  -V, --version              output the version number
+  -b, --bibliography &lt;file&gt;  Bibliography file (CSL JSON)
+  -d, --document &lt;file&gt;      Document file with YAML header
+  -f, --format &lt;name&gt;        Output format (text|html|bibtex|json|ndjson)
+  -t, --template &lt;name&gt;      Citation template (apa|vancouver|harvard1)
+  -l, --language &lt;lang&gt;      Language code
+  -q, --quiet                Avoid status output
+  -h, --help                 output usage information
+
+Commands:
+  add &lt;ids...&gt;               add records specified by Wikidata identifiers
+  show [ids...]              show bibliographic records
+  update [ids...]            update bibliographic records
+  list                       list Wikidata identifiers and aliases
+  help                       display this usage help
+
+Examples:
+  $ wcite refs.json          # list Wikidata ids in refs.json
+  $ wcite update refs.json   # update all entries in refs.json
+  $ wcite Q18507561          # get bibliographic data from Wikidata</code></pre>
+<h3 id="filter-pwcite">Filter pwcite</h3>
+<p>The <a href="https://pandoc.org/filters.html">Pandoc filter</a> <code>pwcite</code> processes a document to detect citation keys that use Wikidata item identifiers. Simply write your documents in Markdown and use <a href="https://pandoc.org/MANUAL.html#citations">Pandoc citation syntax</a> to reference publications such as the following:</p>
+<pre><code>Blah blah [@doe95; @doe99], disputed by @alice07.</code></pre>
+<p>Publications from Wikidata can be referenced using their identifiers like this:</p>
+<pre><code>Wikidata is a collaborative knowledge base [@Q18507561].</code></pre>
+<p>As these identifiers are hard to read and write you better define aliases with the <code>citekeys</code> field of your <a href="https://pandoc.org/MANUAL.html#extension-yaml_metadata_block">document metadata</a>:</p>
+<pre><code>---
+citekeys:
+  Vrand04: Q18507561
+...
+
+Wikidata is a collaborative knowledge base [@Vrand04].</code></pre>
+<p>To process this file, call pandoc with filter <code>pwcite</code> followed by filter <code>pandoc-citeproc</code>:</p>
+<pre><code>$ pandoc -F pwcite -F pandoc-citeproc example.md</code></pre>
+<p>The first filter detects referenced Wikidata items, downloads the corresponding bibliographic records from Wikidata, and adds them to the document. The second filter creates nicely formatted references using the <a href="https://citationstyles.org/">Citation Style Language (CSL)</a>.</p>
+<p>A local <a href="#bibliography-files">bibliography file</a> can be specified in metadata field <code>bibliography</code> for caching:</p>
+<pre><code>---
+citekeys:
+  Vrand04: Q18507561
+bibliography: refs.json 
+...
+
+Wikidata is a collaborative knowledge base [@Vrand04].</code></pre>
+<p>If multiple bibliography files are specified then all are used for referencing but only the first file with extension <code>.json</code> is to store records fetched from Wikidata. This way it is possible to get some references from Wikidata and use other sources as well for instance BibTeX files.</p>
+<p>Pandoc option <code>--bibliography</code> overrides an existing metadata field and automatically enables filter <code>pandoc-citeproc</code>. The file must exist in advance (an empty file is ok):</p>
+<pre><code>$ touch refs.json
+$ pandoc -F pwcite --bibliography refs.json example.md</code></pre>
+<p><strong>Special feature for HTML output:</strong> Bibliographies generated in HTML format include Wikidata identifiers for each reference. Setting document metadata field <code>wikidata-links</code> to <code>true</code> or to an URL prefix (e.g. <code>https://tools.wmflabs.org/scholia/work/</code>) will inject two snippets of JavaScript and CSS to add links from references back to Wikidata.</p>
+<h2 id="bibliography-files">Bibliography files</h2>
+<p>Bibliographic records fetched from Wikidata should be stored locally for several reasons:</p>
+<ul>
+<li>performance: network access is slow</li>
+<li>reproducibility: the data could have been been changed on Wikidata</li>
+</ul>
+<p>Both <a href="#command-wcite">wcite</a> and <a href="#filter-pwcite">pwcite</a> store records in a normalized CSL JSON file. Records in this file are sorted by Wikidata item identifier and serialized as pretty-printed JSON with sorted keys to facilitate comparing changes.</p>
+<p>Bibliography files must have file extension <code>.json</code>. A file can be specified:</p>
+<ul>
+<li>via document metadata field <code>bibliography</code> (see example at <a href="#filter-pwcite">pwcite</a>)</li>
+<li>as command line argument to <a href="#command-wcite">wcite</a></li>
+<li>as existing file <code>wcite.json</code> (<em>not implemented yet</em>)</li>
+</ul>
+<p>Both <a href="#command-wcite">wcite</a> and <a href="#filter-pwcite">pwcite</a> use bibliography files for caching: records are first looked up by their Wikidata item identifier in the file and queried from Wikidata only if not found locally. Use <a href="#command-wcite">wcite</a> to delete or update records if needed.</p>
+<h2 id="api">API</h2>
+<p>The JavaScript API to use this package as module is not finished yet. Stable parts include:</p>
+<h3 id="bibliography">Bibliography</h3>
+<p>This class implements a <a href="#bibliography-files">bibliography file</a> that stores CSL JSON records from Wikidata.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">const</span> <span class="op">{</span> Bibliography <span class="op">}</span> <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;wcite&#39;</span>)</a>
+<a class="sourceLine" id="cb13-2" title="2"></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="kw">var</span> refs <span class="op">=</span> <span class="kw">new</span> <span class="at">Bibliography</span>(<span class="st">&#39;refs.json&#39;</span>)</a>
+<a class="sourceLine" id="cb13-4" title="4"></a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="va">refs</span>.<span class="at">add</span>(item)</a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="kw">let</span> record <span class="op">=</span> <span class="va">refs</span>.<span class="at">get</span>(id<span class="op">,</span> citekeys) </a>
+<a class="sourceLine" id="cb13-7" title="7"></a>
+<a class="sourceLine" id="cb13-8" title="8"><span class="cf">if</span> (<span class="va">refs</span>.<span class="at">modified</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb13-9" title="9">  <span class="va">refs</span>.<span class="at">save</span>()</a>
+<a class="sourceLine" id="cb13-10" title="10"><span class="op">}</span></a></code></pre></div>
+<h3 id="wcite-1">wcite</h3>
+<p>Provides the implementation of command [wcite-cli]</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">const</span> <span class="op">{</span> wcite <span class="op">}</span> <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;wcite&#39;</span>)</a>
+<a class="sourceLine" id="cb14-2" title="2"></a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="at">wcite</span>(<span class="op">{</span> <span class="dt">bibliography</span><span class="op">:</span> <span class="st">&#39;refs.json&#39;</span>).<span class="at">list</span>()</a></code></pre></div>
+<h2 id="license">License</h2>
+<p>MIT license</p>
+<p>Contains parts of <a href="https://github.com/mvhenderson/pandoc-filter-node">pandoc-filter-node</a> originally created by Mike Henderson.</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>Fetching and converting data from Wikidata and to BibTeX is implemented with <a href="https://citation.js.org/">citation.js</a> created by Lars Willighagen.</p>
 <h2 id="references">References</h2>
-<p>This bibliography has automatically been created with pandoc-citeproc and wcite. See <a href="references.json"><code>references.json</code></a> for the generated bibliography in CSL JSON format.</p>
+<p>A bibliography of some publications relevant to wcite is included in the source code repository following here for the purpose of demonstration at <a href="http://wikicite.org/wcite/#references" class="uri">http://wikicite.org/wcite/#references</a>.</p>
+<p>The locally stored CSL JSON file is available as <a href="references.json"><code>references.json</code></a>.</p>
+<p>The benefits of having bibliographic data in a knowledge base are best illustrated by the <a href="https://tools.wmflabs.org/scholia/">Scholia</a> frontend to Wikidata: this website can be used to explore research publications and their connections to authors, institutions, places and other enties <span class="citation" data-cites="Q58484849">(Mietchen, Nielsen, and Willighagen 2018)</span>.</p>
 <div id="refs" class="references">
 <div id="ref-Q824708">
 <p><em>Citation Style Language</em> (version 1.0.1). n.d.</p>
 </div>
 <div id="ref-Q58484849">
-<p>Mietchen, Daniel, Finn Årup Nielsen, and Egon Willighagen. 2018. <em>WikiCite and Scholia - a Linked Open Data Approach to Exploring the Scholarly Literature and Related Resources</em>. <a href="https://www.scidatacon.org/IDW2018/sessions/264/poster/168/" class="uri">https://www.scidatacon.org/IDW2018/sessions/264/poster/168/</a>.</p>
+<p>Mietchen, Daniel, Finn Årup Nielsen, and Egon Willighagen. 2018. <em>WikiCite and Scholia - a Linked Open Data Approach to Exploring the Scholarly Literature and Related Resources</em>. <a href="https://commons.wikimedia.org/wiki/File:ScidataCon_2018_poster_168_-_WikiCite_and_Scholia_-_a_Linked_Open_Data_approach_to_exploring_the_scholarly_literature_and_related_resources.pdf">https://commons.wikimedia.org/wiki/File:ScidataCon_2018_poster_168_-_WikiCite_and_Scholia_-_a_Linked_Open_Data_approach_to_exploring_the_scholarly_literature_and_related_resources.pdf</a>.</p>
 </div>
-<div id="ref-Q2049294">
-<p><em>Pandoc</em> (version 2.6). n.d.</p>
+<div id="ref-Q55239420">
+<p>Shelley, Mary. 1818. <em>Frankenstein</em>. 1st ed. London.</p>
 </div>
 <div id="ref-Q27044176">
-<p>Voss, Jakob. 2016. <em>Wikidata Als Universalbibliographie: Ein Kommentar</em>. <em>LIBREAS</em>. <a href="https://doi.org/10.18452/9090" class="uri">https://doi.org/10.18452/9090</a>.</p>
+<p>Voss, Jakob. 2016. <em>Wikidata Als Universalbibliographie: Ein Kommentar</em>. <em>LIBREAS</em>. doi:<a href="https://doi.org/10.18452/9090">10.18452/9090</a>.</p>
 </div>
 <div id="ref-Q18507561">
-<p>Vrandečić, Denny, and Markus Krötzsch. 2014. “Wikidata: A Free Collaborative Knowledgebase.” <em>Communications of the ACM</em> 57 (10): 78–85. <a href="https://doi.org/10.1145/2629489" class="uri">https://doi.org/10.1145/2629489</a>.</p>
+<p>Vrandečić, Denny, and Markus Krötzsch. 2014. “Wikidata: A Free Collaborative Knowledgebase.” <em>Communications of the ACM</em> 57 (10): 78–85. doi:<a href="https://doi.org/10.1145/2629489">10.1145/2629489</a>.</p>
 </div>
 </div>
-<section class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>See <a href="http://wikicite.org/" class="uri">http://wikicite.org/</a> for additional links.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-</ol>
-</section>
 <script>(refs => {
   const base = 'http://www.wikidata.org/entity/'
   Array.from(refs).filter(e => (e.id || '').match(/^ref-(Q[0-9]+)$/))
