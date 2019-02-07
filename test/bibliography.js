@@ -7,7 +7,8 @@ describe('Bibliography', () => {
   let item = { id: 'Q1' }
 
   it('add', () => {
-    refs.add(item)
+    should(refs.add(item)).be.true()
+    should(refs.add(item)).be.false()
     should.deepEqual(refs.get('Q1'), item)
     should(refs.modified).be.true()
   })

@@ -37,7 +37,7 @@ for (let cmd in commands) {
 }
 
 cli
-.example('refs.json          # list Wikidata ids reyfs.json')
+.example('refs.json          # list Wikidata ids in refs.json')
 .example('update refs.json   # update all entries in refs.json')
 .example('Q18507561          # get bibliographic data from Wikidata')
 

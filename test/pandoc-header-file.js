@@ -17,7 +17,7 @@ describe('pandocHeaderFile', () => {
   })
 
   it('reads a YAML header file', () => {
-    let loc = pkgfile('home/index.md')
+    let loc = pkgfile('home/wcite.md')
     let file = pandocHeaderFile(loc)
     should(file.header).be.ok()
 

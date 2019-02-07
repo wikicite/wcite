@@ -1,6 +1,6 @@
 {
   "name": "wcite",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Use Wikidata as reference manager",
   "homepage": "https://github.com/wikicite/wcite#readme",
   "author": "Jakob Voß",
@@ -28,7 +28,7 @@
     "fix": "standard --fix",
     "lint-staged": "lint-staged",
     "examples": "for md in examples/*.md; do pandoc -t json -o examples/$(basename $md .md).json $md; done",
-    "home": "pandoc -s -F ./bin/pwcite -F ./bin/wikicite-org --bibliography=home/references.json home/index.md -o home/index.html; pandoc -s -F ./bin/wikicite-org README.md -o home/README.html",
+    "home": "pandoc -s -F ./bin/pwcite -F ./bin/wikicite-org --bibliography=home/references.json README.md home/wcite.md -o home/index.html",
     "push-home": "git subtree split --prefix home -b gh-pages && git push -f origin gh-pages:gh-pages"
   },
   "pre-commit": "lint-staged",

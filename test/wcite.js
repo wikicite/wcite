@@ -4,7 +4,7 @@ const { wcite } = require('../index')
 
 describe('wcite', () => {
   it('reads document and/or bibliography', () => {
-    let document = pkgfile('home/index.md')
+    let document = pkgfile('home/wcite.md')
     let bibliography = pkgfile('home/references.json')
     let cite1 = wcite({ document })
     let cite2 = wcite({ bibliography })

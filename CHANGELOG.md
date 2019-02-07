@@ -1,3 +1,8 @@
+0.3.4 (2019-02-07)
+
+* Extend documentation
+* wcite: add log output
+
 0.3.2 (2019-02-06)
 
 * wcite: only update known ids
