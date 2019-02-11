@@ -240,7 +240,7 @@ Provides the implementation of command [wcite-cli]
 ~~~js
 const { wcite } = require('wcite')
 
-wcite({ bibliography: 'refs.json').list()
+wcite({ bibliography: 'refs.json' }).list()
 ~~~
 
 ## License

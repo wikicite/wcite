@@ -5,7 +5,7 @@ const { extractCitekeys } = require('../lib/pwcite')
 describe('extract citekeys', () => {
   let examples = {
     'minimal': { Q18507561: 'Q18507561' },
-    'example': { Vrand04: 'Q18507561' },
+    'example': { Vrand04: 'Q18507561', 'Q2013': 'Q2013' },
     'nocite': { Q55239420: 'Q55239420', foo: '' }
   }
 

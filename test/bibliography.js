@@ -43,4 +43,9 @@ describe('Bibliography', () => {
     refs = new Bibliography()
     should(refs.modified).be.false()
   })
+
+  it('add (deep equal)', () => {
+    refs.add({ id: 'Q1', title: 'foo' })
+    should(refs.add({ title: 'foo', id: 'Q1' })).be.false()
+  })
 })
