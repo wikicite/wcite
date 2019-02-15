@@ -2,7 +2,7 @@
 
 > Use Wikidata as reference manager
 
-[![NPM Version](http://img.shields.io/npm/v/wcite.svg?style=flat)](https://www.npmjs.org/package/wcite)
+[![NPM Version](https://img.shields.io/npm/v/wcite.svg?style=flat)](https://www.npmjs.org/package/wcite)
 [![Build Status](https://travis-ci.org/wikicite/wcite.svg?branch=master)](https://travis-ci.org/wikicite/wcite)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![license](https://img.shields.io/github/license/wikicite/wcite.svg)](https://github.com/wikicite/wcite/blob/master/LICENSE.md)
@@ -68,13 +68,13 @@ bibliographic data can be shown by calling [wcite] with the identifier:
     $ wcite Q55239420
     Q55239420: Shelley, M. (1818). Frankenstein (1st ed.). London
 
-It is recommended to save the data in a local [bibliography file] to not query
-Wikidata each time the record is needed:
+To locally save the bibliographic data in a [bibliography file] pass its name as
+argument or with option `-b`/`--bibliography`:
 
     $ wcite refs.json add Q55239420
     Q55239420 added
 
-Records from this file can then be listed in multiple formats:
+Records from the file can be listed in multiple formats:
 
     $ wcite refs.json
     Q55239420
