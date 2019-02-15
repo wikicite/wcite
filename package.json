@@ -1,6 +1,6 @@
 {
   "name": "wcite",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Use Wikidata as reference manager",
   "homepage": "https://github.com/wikicite/wcite#readme",
   "author": "Jakob Voß",

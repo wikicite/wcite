@@ -1,3 +1,8 @@
+0.3.5 (2019-02-15)
+
+* wcite: add command remove
+* Internal refactoring
+
 0.3.4 (2019-02-07)
 
 * Extend documentation
