@@ -26,6 +26,7 @@ can be specified explicitly or via YAML header field 'bibliography'.`)
 
 const commands = {
   add: [' <ids...>', 'add records specified by Wikidata identifiers'],
+  remove: [' <ids...>', 'remove records by Wikidata identifiers or aliases'],
   show: [' [ids...]', 'show bibliographic records'],
   update: [' [ids...]', 'update bibliographic records'],
   list: ['', 'list Wikidata identifiers and aliases'],
@@ -79,10 +80,20 @@ if (args.length) {
   cli.help()
 }
 
+// allow to abbreviate commands
+if (command && !(command in commands)) {
+  let guess = Object.keys(commands).find(cmd => cmd.startsWith(command))
+  if (guess) {
+    command = guess
+  }
+}
+
 if (command === 'help') {
   cli.help()
 } else {
-  if (!(command in commands)) {
+  if (command === 'del') {
+    command = 'remove'
+  } else if (!(command in commands)) {
     console.error(`unknown command "${command}". Try "wcite help"!`)
     process.exit(1)
   }

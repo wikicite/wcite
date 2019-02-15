@@ -114,7 +114,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Use Wikidata as reference manager</p>
 </blockquote>
-<p><a href="https://www.npmjs.org/package/wcite"><img src="http://img.shields.io/npm/v/wcite.svg?style=flat" alt="NPM Version" /></a> <a href="https://travis-ci.org/wikicite/wcite"><img src="https://travis-ci.org/wikicite/wcite.svg?branch=master" alt="Build Status" /></a> <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a> <a href="https://github.com/wikicite/wcite/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/wikicite/wcite.svg" alt="license" /></a> <a href="https://codeclimate.com/github/wikicite/wcite/maintainability"><img src="https://api.codeclimate.com/v1/badges/b3bd79d9e25a521d0f57/maintainability" alt="Maintainability" /></a></p>
+<p><a href="https://www.npmjs.org/package/wcite"><img src="https://img.shields.io/npm/v/wcite.svg?style=flat" alt="NPM Version" /></a> <a href="https://travis-ci.org/wikicite/wcite"><img src="https://travis-ci.org/wikicite/wcite.svg?branch=master" alt="Build Status" /></a> <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a> <a href="https://github.com/wikicite/wcite/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/wikicite/wcite.svg" alt="license" /></a> <a href="https://codeclimate.com/github/wikicite/wcite/maintainability"><img src="https://api.codeclimate.com/v1/badges/b3bd79d9e25a521d0f57/maintainability" alt="Maintainability" /></a></p>
 <p>This JavaScript package provides <a href="#command-wcite">a command line client</a> to fetch and manage bibliographic records from <a href="https://www.wikidata.org/">Wikidata</a> and a <a href="https://pandoc.org/filters.html">Pandoc filter</a> to use Wikidata item identifiers and aliases as citation keys.</p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
@@ -152,10 +152,10 @@ $ npm install -g .  # or `npm link`</code></pre>
 <p>Bibliographic entities in Wikidata are referenced by their item identifier. For instance <a href="http://www.wikidata.org/entity/Q55239420"><code>Q55239420</code></a> identifies the first edition of <a href="https://en.wikipedia.org/wiki/Frankenstein">Mary Shelley’s novel <em>Frankenstein</em></a>. Its bibliographic data can be shown by calling <a href="#command-wcite">wcite</a> with the identifier:</p>
 <pre><code>$ wcite Q55239420
 Q55239420: Shelley, M. (1818). Frankenstein (1st ed.). London</code></pre>
-<p>It is recommended to save the data in a local <a href="#bibliography-files">bibliography file</a> to not query Wikidata each time the record is needed:</p>
+<p>To locally save the bibliographic data in a <a href="#bibliography-files">bibliography file</a> pass its name as argument or with option <code>-b</code>/<code>--bibliography</code>:</p>
 <pre><code>$ wcite refs.json add Q55239420
 Q55239420 added</code></pre>
-<p>Records from this file can then be listed in multiple formats:</p>
+<p>Records from the file can be listed in multiple formats:</p>
 <pre><code>$ wcite refs.json
 Q55239420
 

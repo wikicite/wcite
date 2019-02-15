@@ -4,6 +4,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/wcite.svg?style=flat)](https://www.npmjs.org/package/wcite)
 [![Build Status](https://travis-ci.org/wikicite/wcite.svg?branch=master)](https://travis-ci.org/wikicite/wcite)
+[![Open Issues](https://img.shields.io/github/issues-raw/wikicite/wcite.svg?style=flat)](https://github.com/wikicite/wcite/issues)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![license](https://img.shields.io/github/license/wikicite/wcite.svg)](https://github.com/wikicite/wcite/blob/master/LICENSE.md)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b3bd79d9e25a521d0f57/maintainability)](https://codeclimate.com/github/wikicite/wcite/maintainability)
@@ -115,6 +116,7 @@ Options:
 
 Commands:
   add <ids...>               add records specified by Wikidata identifiers
+  remove <ids...>            remove records by Wikidata identifiers or aliases
   show [ids...]              show bibliographic records
   update [ids...]            update bibliographic records
   list                       list Wikidata identifiers and aliases
