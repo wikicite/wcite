@@ -1,3 +1,5 @@
+0.3.6 (2019-02-17)
+
 * wcite: add option --ids to read ids from file or STDIN
 
 0.3.5 (2019-02-15)
