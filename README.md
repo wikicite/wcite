@@ -8,6 +8,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![license](https://img.shields.io/github/license/wikicite/wcite.svg)](https://github.com/wikicite/wcite/blob/master/LICENSE.md)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b3bd79d9e25a521d0f57/maintainability)](https://codeclimate.com/github/wikicite/wcite/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/wikicite/wcite/badge.svg?branch=master)](https://coveralls.io/github/wikicite/wcite?branch=master)
 
 This JavaScript package provides [a command line client](#command-wcite) to
 fetch and manage bibliographic records from [Wikidata] and a [Pandoc filter] to

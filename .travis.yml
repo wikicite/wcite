@@ -3,3 +3,5 @@ node_js:
   - "node"
   - "8"
   - "6"
+script: npm run coverage
+after_success: npm run coveralls
