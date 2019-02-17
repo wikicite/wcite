@@ -34,6 +34,14 @@ describe('Bibliography', () => {
     should.deepEqual(refs.get('Q1'), item)
   })
 
+  it('remove', () => {
+    should(refs.remove('Q9')).be.undefined()
+    should(refs.modified).be.false()
+    should(refs.remove('Q1')).be.true()
+    should(refs.modified).be.true()
+    should(refs.get('Q1')).be.undefined()
+  })
+
   it('exception', () => {
     let file = pkgfile('package.json')
     should(() => new Bibliography(file).throw())

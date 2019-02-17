@@ -111,6 +111,7 @@ Options:
   -d, --document <file>      Document file with YAML header
   -f, --format <name>        Output format (text|html|bibtex|json|ndjson)
   -t, --template <name>      Citation template (apa|vancouver|harvard1)
+  -i, --ids <file>           Read ids from file (use `-` for stdin)
   -l, --language <lang>      Language code
   -q, --quiet                Avoid status output
   -h, --help                 output usage information

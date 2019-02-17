@@ -9,7 +9,7 @@ const { Writable } = require('stream')
 
 const pkgfile = (...args) => path.join(__dirname, '/../', ...args)
 const random = () => Math.random().toString(36).substring(2)
-const tempfile = () => path.join(os.tmpdir(), '/', random() + '.json')
+const tempfile = (ext = 'json') => path.join(os.tmpdir(), '/', random() + '.' + ext)
 
 class OutStream extends Writable {
   constructor () {
