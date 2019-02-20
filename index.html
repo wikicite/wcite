@@ -114,7 +114,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Use Wikidata as reference manager</p>
 </blockquote>
-<p><a href="https://www.npmjs.org/package/wcite"><img src="https://img.shields.io/npm/v/wcite.svg?style=flat" alt="NPM Version" /></a> <a href="https://travis-ci.org/wikicite/wcite"><img src="https://travis-ci.org/wikicite/wcite.svg?branch=master" alt="Build Status" /></a> <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a> <a href="https://github.com/wikicite/wcite/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/wikicite/wcite.svg" alt="license" /></a> <a href="https://codeclimate.com/github/wikicite/wcite/maintainability"><img src="https://api.codeclimate.com/v1/badges/b3bd79d9e25a521d0f57/maintainability" alt="Maintainability" /></a></p>
+<p><a href="https://www.npmjs.org/package/wcite"><img src="https://img.shields.io/npm/v/wcite.svg?style=flat" alt="NPM Version" /></a> <a href="https://travis-ci.org/wikicite/wcite"><img src="https://travis-ci.org/wikicite/wcite.svg?branch=master" alt="Build Status" /></a> <a href="https://github.com/wikicite/wcite/issues"><img src="https://img.shields.io/github/issues-raw/wikicite/wcite.svg?style=flat" alt="Open Issues" /></a> <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a> <a href="https://github.com/wikicite/wcite/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/wikicite/wcite.svg" alt="license" /></a> <a href="https://codeclimate.com/github/wikicite/wcite/maintainability"><img src="https://api.codeclimate.com/v1/badges/b3bd79d9e25a521d0f57/maintainability" alt="Maintainability" /></a> <a href="https://coveralls.io/github/wikicite/wcite?branch=master"><img src="https://coveralls.io/repos/github/wikicite/wcite/badge.svg?branch=master" alt="Coverage Status" /></a></p>
 <p>This JavaScript package provides <a href="#command-wcite">a command line client</a> to fetch and manage bibliographic records from <a href="https://www.wikidata.org/">Wikidata</a> and a <a href="https://pandoc.org/filters.html">Pandoc filter</a> to use Wikidata item identifiers and aliases as citation keys.</p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
@@ -179,12 +179,14 @@ Options:
   -d, --document &lt;file&gt;      Document file with YAML header
   -f, --format &lt;name&gt;        Output format (text|html|bibtex|json|ndjson)
   -t, --template &lt;name&gt;      Citation template (apa|vancouver|harvard1)
+  -i, --ids &lt;file&gt;           Read ids from file (use `-` for stdin)
   -l, --language &lt;lang&gt;      Language code
   -q, --quiet                Avoid status output
   -h, --help                 output usage information
 
 Commands:
   add &lt;ids...&gt;               add records specified by Wikidata identifiers
+  remove &lt;ids...&gt;            remove records by Wikidata identifiers or aliases
   show [ids...]              show bibliographic records
   update [ids...]            update bibliographic records
   list                       list Wikidata identifiers and aliases
@@ -218,8 +220,8 @@ bibliography: refs.json
 
 Wikidata is a collaborative knowledge base [@Vrand04].</code></pre>
 <p>If multiple bibliography files are specified then all are used for referencing but only the first file with extension <code>.json</code> is to store records fetched from Wikidata. This way it is possible to get some references from Wikidata and use other sources as well for instance BibTeX files.</p>
-<p>Pandoc option <code>--bibliography</code> overrides an existing metadata field and automatically enables filter <code>pandoc-citeproc</code>. The file must exist in advance (an empty file is ok):</p>
-<pre><code>$ touch refs.json
+<p>Pandoc option <code>--bibliography</code> overrides an existing metadata field and automatically enables filter <code>pandoc-citeproc</code>. The file must exist in advance:</p>
+<pre><code>$ echo [] &gt; refs.json
 $ pandoc -F pwcite --bibliography refs.json example.md</code></pre>
 <p><strong>Special feature for HTML output:</strong> Bibliographies generated in HTML format include Wikidata identifiers for each reference. Setting document metadata field <code>wikidata-links</code> to <code>true</code> or to an URL prefix (e.g. <code>https://tools.wmflabs.org/scholia/work/</code>) will inject two snippets of JavaScript and CSS to add links from references back to Wikidata.</p>
 <h2 id="bibliography-files">Bibliography files</h2>
