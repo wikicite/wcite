@@ -31,7 +31,7 @@ describe('wcite', () => {
   it('lists ids and aliases from document and bibliography', () => {
     let bibliography = example('nocite-refs.json')
     let document = example('citeall.yaml')
-    output({ document, bibliography }, 'list').equal('Vrand04: Q18507561\nQ55239420\n')
+    output({ document, bibliography }, 'list').equal('Vrand04: Q18507561\nQ2013\nQ55239420\n')
   })
 
   it('complains on missing YAML header', () => {

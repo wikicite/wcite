@@ -179,10 +179,9 @@ This way it is possible to get some references from Wikidata and use other sourc
 well for instance BibTeX files.
 
 Pandoc option `--bibliography` overrides an existing metadata field and
-automatically enables filter `pandoc-citeproc`. The file must exist in advance
-(an empty file is ok): 
+automatically enables filter `pandoc-citeproc`. The file must exist in advance:
 
-    $ touch refs.json
+    $ echo [] > refs.json
     $ pandoc -F pwcite --bibliography refs.json example.md
 
 **Special feature for HTML output:** Bibliographies generated in HTML format

@@ -21,8 +21,8 @@ describe('Document', () => {
 
   it('reads citekeys field', () => {
     let doc = new Document({ document: pkgfile('examples/citeall.yaml') })
-    should(doc.nocite).deepEqual(new Set(['*']))
-    should(doc.citekeys).deepEqual({ Q18507561: false, Vrand04: 'Q18507561' })
+    should(doc.nocite).deepEqual(new Set(['*', 'Q2013']))
+    should(doc.citekeys).deepEqual({ Q18507561: false, Vrand04: 'Q18507561', Q2013: false })
     should(doc.aliases).deepEqual({ Q18507561: 'Vrand04' })
   })
 
