@@ -1,3 +1,11 @@
+0.3.8 (2019-02-21)
+
+* pwcite: fix detection of bibliography
+
+0.3.7 (2019-02-20)
+
+* wcite: Fix command 'show' without bibliography file
+
 0.3.6 (2019-02-17)
 
 * wcite: add option --ids to read ids from file or STDIN
