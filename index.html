@@ -120,12 +120,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#installation">Installation</a></li>
-<li><a href="#background">Background</a></li>
 <li><a href="#usage">Usage</a>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#command-wcite">Command wcite</a></li>
 <li><a href="#filter-pwcite">Filter pwcite</a></li>
+<li><a href="#linking-bibliography-entries-to-Wikidata">Linking bibliography entries to Wikidata</a></li>
 <li><a href="#bibliography-files">Bibliography files</a></li>
 </ul></li>
 <li><a href="#api">API</a></li>
@@ -223,7 +223,8 @@ Wikidata is a collaborative knowledge base [@Vrand04].</code></pre>
 <p>Pandoc option <code>--bibliography</code> overrides an existing metadata field and automatically enables filter <code>pandoc-citeproc</code>. The file must exist in advance:</p>
 <pre><code>$ echo [] &gt; refs.json
 $ pandoc -F pwcite --bibliography refs.json example.md</code></pre>
-<p><strong>Special feature for HTML output:</strong> Bibliographies generated in HTML format include Wikidata identifiers for each reference. Setting document metadata field <code>wikidata-links</code> to <code>true</code> or to an URL prefix (e.g. <code>https://tools.wmflabs.org/scholia/work/</code>) will inject two snippets of JavaScript and CSS to add links from references back to Wikidata.</p>
+<h2 id="linking-bibliography-entries-to-wikidata">Linking bibliography entries to Wikidata</h2>
+<p>Each bibliography entry in HTML format includes the Wikidata item identifier in its <code>id</code> attribute (e.g. <code>&lt;div id="ref-Q55239420"&gt;...</code>). This identifier can be used to add a link to the corresponding Wikidata item or to other services such as <a href="https://tools.wmflabs.org/scholia/">Scholia</a>. The filter <a href="#filter-pwcite">pwcite</a> can inject snippets of JavaScript and CSS to add links from bibliography entries to Wikidata. To to do set document metadata field <code>wikidata-links</code> to <code>true</code> or to an URL prefix (e.g. <code>https://tools.wmflabs.org/scholia/work/</code>). This feature is based on Pandoc metadata variable <code>include-after</code>, so don’t set it via Pandoc command line option <code>-A/--include-after-body</code>!</p>
 <h2 id="bibliography-files">Bibliography files</h2>
 <p>Bibliographic records fetched from Wikidata should be stored locally for several reasons:</p>
 <ul>
