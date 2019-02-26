@@ -18,11 +18,11 @@ use Wikidata item identifiers and aliases as citation keys.
 
 * [Overview](#overview)
 * [Installation](#installation)
-* [Background](#background)
 * [Usage](#usage)
     * [Introduction](#introduction)
     * [Command wcite](#command-wcite)
     * [Filter pwcite](#filter-pwcite)
+    * [Linking bibliography entries to Wikidata](#linking-bibliography-entries-to-Wikidata)
     * [Bibliography files](#bibliography-files)
 * [API](#api)
 * [License](#license)
@@ -184,11 +184,17 @@ automatically enables filter `pandoc-citeproc`. The file must exist in advance:
     $ echo [] > refs.json
     $ pandoc -F pwcite --bibliography refs.json example.md
 
-**Special feature for HTML output:** Bibliographies generated in HTML format
-include Wikidata identifiers for each reference. Setting document metadata
-field `wikidata-links` to `true` or to an URL prefix (e.g.
-`https://tools.wmflabs.org/scholia/work/`) will inject two snippets of
-JavaScript and CSS to add links from references back to Wikidata.
+## Linking bibliography entries to Wikidata
+
+Each bibliography entry in HTML format includes the Wikidata item identifier in
+its `id` attribute (e.g. `<div id="ref-Q55239420">...`). This identifier can be
+used to add a link to the corresponding Wikidata item or to other services such
+as [Scholia](https://tools.wmflabs.org/scholia/). The filter [pwcite] can
+inject snippets of JavaScript and CSS to add links from bibliography entries to
+Wikidata. To to do set document metadata field `wikidata-links` to `true` or to
+an URL prefix (e.g. `https://tools.wmflabs.org/scholia/work/`). This feature is
+based on Pandoc metadata variable `include-after`, so don't set it via Pandoc
+command line option `-A/--include-after-body`!
 
 ## Bibliography files
 
