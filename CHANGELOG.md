@@ -1,3 +1,7 @@
+0.3.9 (2019-02-27)
+
+* Remove polyfills from util/cite.js (#8)
+
 0.3.8 (2019-02-21)
 
 * pwcite: fix detection of bibliography
