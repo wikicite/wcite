@@ -110,9 +110,10 @@ Options:
   -b, --bibliography <file>  Bibliography file (CSL JSON)
   -d, --document <file>      Document file with YAML header
   -f, --format <name>        Output format (text|html|bibtex|json|ndjson)
+  -o, --output <file>        Output file. Format can be guessed from extension
   -t, --template <name>      Citation template (apa|vancouver|harvard1)
-  -i, --ids <file>           Read ids from file (use `-` for stdin)
   -l, --language <lang>      Language code
+  -i, --ids <file>           Read ids from (use `-` for stdin)
   -q, --quiet                Avoid status output
   -h, --help                 output usage information
 

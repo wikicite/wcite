@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const cli = require('../lib/cli')
 const wcite = require('../lib/wcite')
+const guessFormat = require('../lib/guess-format')
 const path = require('path')
 const fs = require('fs')
 
@@ -21,6 +22,7 @@ can be specified explicitly or via YAML header field 'bibliography'.`)
 .option('-b, --bibliography <file>', 'Bibliography file (CSL JSON)')
 .option('-d, --document <file>', 'Document file with YAML header')
 .option('-f, --format <name>', 'Output format (text|html|bibtex|json|ndjson)')
+.option('-o, --output <file>', 'Output file. Format can be guessed from extension')
 .option('-t, --template <name>', 'Citation template (apa|vancouver|harvard1)')
 .option('-l, --language <lang>', 'Language code')
 .option('-i, --ids <file>', 'Read ids from (use `-` for stdin)')
@@ -63,6 +65,10 @@ function optionalFileArg() {
 }
 
 if (args.length) {
+  if (cli.output && !cli.format) {
+    cli.format = guessFormat(cli.output)
+  }
+
   if (args[0].match(/^[a-z]+$/)) {  // <command> [file] [ids...]
     command = args.shift()
     optionalFileArg()
