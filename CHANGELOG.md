@@ -1,3 +1,6 @@
+* Support language selection
+* Support bibtxt output format
+
 0.3.9 (2019-02-27)
 
 * Remove polyfills from util/cite.js (#8)

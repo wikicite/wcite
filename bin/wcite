@@ -21,10 +21,10 @@ can be specified explicitly or via YAML header field 'bibliography'.`)
 
 .option('-b, --bibliography <file>', 'Bibliography file (CSL JSON)')
 .option('-d, --document <file>', 'Document file with YAML header')
-.option('-f, --format <name>', 'Output format (text|html|bibtex|json|ndjson)')
+.option('-f, --format <name>', 'Output format (text|html|bibtex|bibtxt|json|ndjson)')
 .option('-o, --output <file>', 'Output file. Format can be guessed from extension')
 .option('-t, --template <name>', 'Citation template (apa|vancouver|harvard1)')
-.option('-l, --language <lang>', 'Language code')
+.option('-l, --language <lang>', 'Language codes (separate with space or comma)')
 .option('-i, --ids <file>', 'Read ids from (use `-` for stdin)')
 .option('-q, --quiet', 'Avoid status output')
 
