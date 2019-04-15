@@ -1,20 +1,14 @@
 #!/usr/bin/env node
 const cli = require('../lib/cli')
+const cite = require('../lib/util/cite')
 const wcite = require('../lib/wcite')
 const guessFormat = require('../lib/guess-format')
-const path = require('path')
 const fs = require('fs')
-
-// get version number without requiring the module
-function packageVersion(module) {
-  const dir = path.dirname(require.resolve(module))
-  return module + ' ' + require(path.join(dir, 'package.json')).version
-}
 
 const { version } = require('../package.json')
 
 cli
-.version(`wcite ${version} with ` + packageVersion('citation-js'))
+.version(`wcite ${version} with @citation-js/core ` + cite.version())
 .usage('[options] [command] [file] [ids...]')
 .description(`Manage bibliographic data from Wikidata. Bibliography CSL JSON file
 can be specified explicitly or via YAML header field 'bibliography'.`)
