@@ -42,6 +42,14 @@ cli
 
 cli.parse(process.argv)
 
+if (!cli.args.length) {
+  cli.help()
+}
+
+if (cli.output && !cli.format) {
+  cli.format = guessFormat(cli.output)
+}
+
 const { isQid, cutQid } = require('../lib/util/wikidata')
 const isFile = path => path && path.match(/\.[a-z]/)
 
@@ -58,28 +66,20 @@ function optionalFileArg() {
   }
 }
 
-if (args.length) {
-  if (cli.output && !cli.format) {
-    cli.format = guessFormat(cli.output)
-  }
-
-  if (args[0].match(/^[a-z]+$/)) {  // <command> [file] [ids...]
+if (args[0].match(/^[a-z]+$/)) {  // <command> [file] [ids...]
+  command = args.shift()
+  optionalFileArg()
+} else {                          // [file] [command] [ids...]
+  optionalFileArg()
+  if (args.length && args[0].match(/^[a-z]+$/)) {
     command = args.shift()
-    optionalFileArg()
-  } else {                          // [file] [command] [ids...]
-    optionalFileArg()
-    if (args.length && args[0].match(/^[a-z]+$/)) {
-      command = args.shift()
-    } else if (cli.format || cli.template) {
-      command = 'show'
-    } else if ((cli.bibliography || cli.document) && !args.length) {
-      command = 'list'
-    } else {                        // fetch data and directly show it
-      command = 'show'
-    }
+  } else if (cli.format || cli.template) {
+    command = 'show'
+  } else if ((cli.bibliography || cli.document) && !args.length) {
+    command = 'list'
+  } else {                        // fetch data and directly show it
+    command = 'show'
   }
-} else {
-  cli.help()
 }
 
 // allow to abbreviate commands

@@ -1,5 +1,12 @@
-* Support language selection
-* Support bibtxt output format
+0.4.0 (2019-04-15)
+
+* wcite: support language selection
+* wcite: support bibtxt output format
+
+0.3.10 (2019-03-02)
+
+* pwcite: allow to directly run
+* wcite: add option -o/--output
 
 0.3.9 (2019-02-27)
 
