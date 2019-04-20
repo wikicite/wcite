@@ -192,10 +192,11 @@ its `id` attribute (e.g. `<div id="ref-Q55239420">...`). This identifier can be
 used to add a link to the corresponding Wikidata item or to other services such
 as [Scholia](https://tools.wmflabs.org/scholia/). The filter [pwcite] can
 inject snippets of JavaScript and CSS to add links from bibliography entries to
-Wikidata. To to do set document metadata field `wikidata-links` to `true` or to
-an URL prefix (e.g. `https://tools.wmflabs.org/scholia/work/`). This feature is
-based on Pandoc metadata variable `include-after`, so don't set it via Pandoc
-command line option `-A/--include-after-body`!
+Wikidata. To to do set document metadata field `link-wikidata-references` to
+`true` or to an URL prefix (e.g. `https://tools.wmflabs.org/scholia/work/`).
+This feature is based on Pandoc metadata variable `include-after`, so don't set
+it via Pandoc command line option `-A/--include-after-body` and don'r remove the
+variable in custom HTML templates!
 
 ## Bibliography files
 

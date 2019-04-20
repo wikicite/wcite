@@ -2,7 +2,7 @@
 title: Wikidata as reference manager
 author: Jakob Voß
 
-wikidata-links: true
+link-wikidata-references: true
 citekeys:
   Scholia: Q58484849
   Pandoc: Q2049294 

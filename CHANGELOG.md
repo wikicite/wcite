@@ -1,3 +1,7 @@
+0.4.1 (2019-04-19)
+
+* pwcite: rename wikidata-links to link-wikidata-references
+
 0.4.0 (2019-04-15)
 
 * wcite: support language selection
