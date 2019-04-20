@@ -10,7 +10,7 @@ citekeys:
 nocite: | 
   @Q27044176, @Q18507561, @Q824708, @*
 
-wikidata-links: true
+link-wikidata-references: true
 ...
 
 The locally stored CSL JSON file is available as [`references.json`](references.json).
