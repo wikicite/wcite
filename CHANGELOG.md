@@ -1,4 +1,8 @@
-0.4.1 (2019-04-19)
+0.4.2 (2019-04-21)
+
+* Remove internal keys from CSL JSON
+
+0.4.1 (2019-04-20)
 
 * pwcite: rename wikidata-links to link-wikidata-references
 
