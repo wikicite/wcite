@@ -120,7 +120,7 @@ Options:
 Commands:
   add <ids...>               add records specified by Wikidata identifiers
   remove <ids...>            remove records by Wikidata identifiers or aliases
-  show [ids...]              show bibliographic records
+  get [ids...]               show bibliographic records
   update [ids...]            update bibliographic records
   list                       list Wikidata identifiers and aliases
   help                       display this usage help

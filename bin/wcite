@@ -23,6 +23,7 @@ can be specified explicitly or via YAML header field 'bibliography'.`)
 .option('-q, --quiet', 'Avoid status output')
 
 const commands = {
+  get: [' [ids...]', 'get and show bibliographic records'],
   add: [' <ids...>', 'add records specified by Wikidata identifiers'],
   remove: [' <ids...>', 'remove records by Wikidata identifiers or aliases'],
   show: [' [ids...]', 'show bibliographic records'],
@@ -74,11 +75,11 @@ if (args[0].match(/^[a-z]+$/)) {  // <command> [file] [ids...]
   if (args.length && args[0].match(/^[a-z]+$/)) {
     command = args.shift()
   } else if (cli.format || cli.template) {
-    command = 'show'
+    command = 'get'
   } else if ((cli.bibliography || cli.document) && !args.length) {
     command = 'list'
   } else {                        // fetch data and directly show it
-    command = 'show'
+    command = 'get'
   }
 }
 
@@ -93,9 +94,7 @@ if (command && !(command in commands)) {
 if (command === 'help') {
   cli.help()
 } else {
-  if (command === 'del') {
-    command = 'remove'
-  } else if (!(command in commands)) {
+  if (!(command in commands)) {
     console.error(`unknown command "${command}". Try "wcite help"!`)
     process.exit(1)
   }

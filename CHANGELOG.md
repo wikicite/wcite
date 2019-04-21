@@ -1,6 +1,7 @@
 0.4.2 (2019-04-21)
 
 * Remove internal keys from CSL JSON
+* wcite: rename command 'show' to 'get' with 'show' as alias
 
 0.4.1 (2019-04-20)
 
