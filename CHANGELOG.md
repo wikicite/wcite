@@ -1,3 +1,7 @@
+0.4.3 (2019-05-01)
+
+* Update dependencies
+
 0.4.2 (2019-04-21)
 
 * Remove internal keys from CSL JSON

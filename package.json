@@ -1,6 +1,6 @@
 {
   "name": "wcite",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Use Wikidata as reference manager",
   "homepage": "https://github.com/wikicite/wcite#readme",
   "author": "Jakob Voß",
@@ -52,10 +52,10 @@
     "node": ">= 6.0"
   },
   "dependencies": {
-    "@citation-js/plugin-bibtex": "^0.4.1",
-    "@citation-js/plugin-csl": "^0.4.1",
-    "@citation-js/plugin-wikidata": "^0.4.1",
-    "@citation-js/core": "^0.4.1",
+    "@citation-js/core": "^0.4.2",
+    "@citation-js/plugin-bibtex": "^0.4.2",
+    "@citation-js/plugin-csl": "^0.4.2",
+    "@citation-js/plugin-wikidata": "^0.4.2",
     "commander": "^2.20.0",
     "yaml": "^1.5.0"
   },
