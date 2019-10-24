@@ -19,7 +19,6 @@ use Wikidata item identifiers and aliases as citation keys.
 * [Overview](#overview)
 * [Installation](#installation)
 * [Usage](#usage)
-    * [Introduction](#introduction)
     * [Command wcite](#command-wcite)
     * [Filter pwcite](#filter-pwcite)
     * [Linking bibliography entries to Wikidata](#linking-bibliography-entries-to-Wikidata)
@@ -50,7 +49,7 @@ Install latest release:
 
     $ npm install -g wcite
 
-Install from source:
+or install from source:
 
     $ git clone https://github.com/wikicite/wcite.git
     $ cd wcite
@@ -59,8 +58,6 @@ Install from source:
 Tested with [NodeJs](https://nodejs.org) version 8 and above.
 
 ## Usage
-
-### Introduction
 
 Bibliographic entities in Wikidata are referenced by their item identifier.
 For instance [`Q55239420`] identifies the first edition of [Mary Shelley's
@@ -94,7 +91,7 @@ All this is done automatically with Pandoc filter [pwcite].
 
 ### Command wcite
 
-The command line script `wcite` can fetch and transform bibliographic data from
+Command line script `wcite` can fetch and transform bibliographic data from
 Wikidata and locally manage it in a [bibliography file]. In addition to
 bibliography files the script can read and write document files with YAML
 header.
@@ -135,7 +132,7 @@ Examples:
 
 The [Pandoc filter] `pwcite` processes a document to detect citation keys that
 use Wikidata item identifiers. Simply write your documents in Markdown and use
-[Pandoc citation syntax] to reference publications such as the following:
+[Pandoc citation syntax] to reference publications:
 
     Blah blah [@doe95; @doe99], disputed by @alice07.
 
@@ -143,8 +140,8 @@ Publications from Wikidata can be referenced using their identifiers like this:
 
     Wikidata is a collaborative knowledge base [@Q18507561].
 
-As these identifiers are hard to read and write you better define aliases with
-the `citekeys` field of your [document metadata]:
+Wikidata identifiers are hard to remember and to distinguish so you can define
+aliases with the `citekeys` field of your [document metadata]:
 
     ---
     citekeys:
@@ -179,11 +176,8 @@ only the first file with extension `.json` is to store records fetched from Wiki
 This way it is possible to get some references from Wikidata and use other sources as
 well for instance BibTeX files.
 
-Pandoc option `--bibliography` overrides an existing metadata field and
-automatically enables filter `pandoc-citeproc`. The file must exist in advance:
-
-    $ echo [] > refs.json
-    $ pandoc -F pwcite --bibliography refs.json example.md
+Pandoc option `--bibliography` overrides an existing metadata field and automatically
+enables filter `pandoc-citeproc` but in this case the file must exist in advance.
 
 ## Linking bibliography entries to Wikidata
 
@@ -195,7 +189,7 @@ inject snippets of JavaScript and CSS to add links from bibliography entries to
 Wikidata. To to do set document metadata field `link-wikidata-references` to
 `true` or to an URL prefix (e.g. `https://tools.wmflabs.org/scholia/work/`).
 This feature is based on Pandoc metadata variable `include-after`, so don't set
-it via Pandoc command line option `-A/--include-after-body` and don'r remove the
+it via Pandoc command line option `-A/--include-after-body` and don't remove the
 variable in custom HTML templates!
 
 ## Bibliography files

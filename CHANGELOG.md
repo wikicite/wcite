@@ -1,3 +1,7 @@
+0.4.4 (2019-10-25)
+
+* Update dependencies
+
 0.4.3 (2019-05-01)
 
 * Update dependencies
