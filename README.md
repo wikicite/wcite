@@ -56,7 +56,7 @@ Install from source:
     $ cd wcite
     $ npm install -g .  # or `npm link`
 
-Tested with [NodeJs](https://nodejs.org) version 6 and above.
+Tested with [NodeJs](https://nodejs.org) version 8 and above.
 
 ## Usage
 
