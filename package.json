@@ -52,20 +52,20 @@
     "node": ">= 8.0"
   },
   "dependencies": {
-    "@citation-js/core": "^0.5.0-alpha.4",
-    "@citation-js/plugin-bibtex": "^0.5.0-alpha.4",
-    "@citation-js/plugin-csl": "^0.5.0-alpha.4",
-    "@citation-js/plugin-wikidata": "^0.5.0-alpha.4",
+    "@citation-js/core": "^0.5.0-alpha.9",
+    "@citation-js/plugin-bibtex": "^0.5.0-alpha.9",
+    "@citation-js/plugin-csl": "^0.5.0-alpha.9",
+    "@citation-js/plugin-wikidata": "^0.5.0-alpha.9",
     "commander": "^3.0.2",
-    "yaml": "^1.5.0"
+    "yaml": "^1.10.0"
   },
   "devDependencies": {
-    "coveralls": "^3.0.2",
-    "lint-staged": "^9.4",
-    "mocha": "^6.2",
+    "coveralls": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "mocha": "^6.2.3",
     "nyc": "^14.0",
     "pre-commit": "^1.2.2",
     "should": "^13.2.3",
-    "standard": "^14.0"
+    "standard": "^14.3.4"
   }
 }
